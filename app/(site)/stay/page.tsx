@@ -40,7 +40,7 @@ export default function StayPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-forest-deep via-forest-deep/60 to-forest-deep/30" />
 
         <div className="relative container-content pb-16 z-10 max-w-4xl">
-          <div className="inline-flex items-center gap-2.5 mb-4 bg-forest-deep/70 backdrop-blur-md px-3.5 py-1.5 border border-sand/30">
+          <div className="inline-flex items-center gap-2.5 mb-4 bg-forest-deep/70 backdrop-blur-md px-3.5 py-1.5 border border-sand/30 rounded-full">
             <span className="w-1.5 h-1.5 rounded-full bg-sand" />
             <p className="text-[10px] tracking-ultra uppercase text-sand-light font-medium">
               Accommodations &amp; Villas
@@ -56,28 +56,28 @@ export default function StayPage() {
         </div>
       </section>
 
-      {/* Direct Booking Privileges Bar */}
-      <section className="bg-sand/15 border-b border-sand/30 py-5">
-        <div className="container-content flex flex-wrap items-center justify-around gap-4 text-xs tracking-luxury uppercase text-forest font-medium">
-          <span className="flex items-center gap-2">
+      {/* Direct Booking Privileges Bar with rounded-xl */}
+      <section className="container-content my-8">
+        <div className="bg-sand/15 border border-sand/30 py-5 px-6 rounded-2xl flex flex-wrap items-center justify-around gap-4 text-xs tracking-luxury uppercase text-forest font-medium shadow-sm">
+          <span className="flex items-center gap-2 bg-cream/80 px-3 py-1.5 rounded-full border border-sand/20">
             <svg className="w-4 h-4 text-sand-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M5 13l4 4L19 7" />
             </svg>
             Direct Rate Guaranteed
           </span>
-          <span className="flex items-center gap-2">
+          <span className="flex items-center gap-2 bg-cream/80 px-3 py-1.5 rounded-full border border-sand/20">
             <svg className="w-4 h-4 text-sand-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M5 13l4 4L19 7" />
             </svg>
             Daily Estate Breakfast
           </span>
-          <span className="flex items-center gap-2">
+          <span className="flex items-center gap-2 bg-cream/80 px-3 py-1.5 rounded-full border border-sand/20">
             <svg className="w-4 h-4 text-sand-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M5 13l4 4L19 7" />
             </svg>
             Guided Morning Shola Walk
           </span>
-          <span className="flex items-center gap-2">
+          <span className="flex items-center gap-2 bg-cream/80 px-3 py-1.5 rounded-full border border-sand/20">
             <svg className="w-4 h-4 text-sand-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M5 13l4 4L19 7" />
             </svg>
@@ -87,7 +87,7 @@ export default function StayPage() {
       </section>
 
       {/* Main Residences Grid */}
-      <section className="container-content py-24 md:py-32">
+      <section className="container-content py-16 md:py-24">
         <SectionHeading
           eyebrow="Our Residences"
           title="Designed around the landscape"
@@ -101,7 +101,7 @@ export default function StayPage() {
         </div>
       </section>
 
-      {/* Residence Comparison Matrix */}
+      {/* Residence Comparison Matrix with rounded-2xl */}
       <section className="bg-mist/30 py-24 md:py-32 border-t border-b border-sand/25">
         <div className="container-content">
           <SectionHeading
@@ -111,7 +111,7 @@ export default function StayPage() {
             description="Compare dimensions, bespoke inclusions, and features across each residence category."
           />
 
-          <div className="mt-16 overflow-x-auto">
+          <div className="mt-16 overflow-x-auto rounded-2xl border border-sand/25 shadow-luxury-card bg-cream">
             <table className="w-full text-left border-collapse min-w-[680px]">
               <thead>
                 <tr className="border-b-2 border-sand/30 bg-cream">
@@ -141,7 +141,7 @@ export default function StayPage() {
           <div className="mt-12 text-center">
             <Link
               href="/book"
-              className="inline-flex items-center gap-3 px-9 py-4 bg-forest text-cream text-xs tracking-luxury uppercase font-medium hover:bg-forest-dark transition-all shadow-md hover:shadow-xl"
+              className="inline-flex items-center gap-3 px-9 py-4 bg-forest text-cream text-xs tracking-luxury uppercase font-medium hover:bg-forest-dark transition-all shadow-md hover:shadow-xl rounded-lg"
             >
               <span>Reserve Your Residence</span>
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -152,9 +152,9 @@ export default function StayPage() {
         </div>
       </section>
 
-      {/* Private Estate Buyout Note */}
+      {/* Private Estate Buyout Note with rounded-2xl */}
       <section className="container-content py-20 text-center">
-        <div className="max-w-2xl mx-auto border border-sand/30 p-8 sm:p-12 bg-cream shadow-luxury">
+        <div className="max-w-2xl mx-auto border border-sand/30 p-8 sm:p-12 bg-cream shadow-luxury rounded-2xl">
           <span className="text-[10px] tracking-ultra uppercase text-sand-dark font-medium block mb-2">
             Exclusive Gatherings
           </span>

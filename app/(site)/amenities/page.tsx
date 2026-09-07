@@ -114,13 +114,14 @@ export default function AmenitiesPage() {
           src={images.amenities.pool}
           alt="Infinity pool overlooking the valley at Deccan Resort"
           fill
+          priority
           sizes="100vw"
           className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-forest-deep via-forest-deep/60 to-forest-deep/30" />
         
         <div className="relative container-content pb-16 z-10 max-w-4xl">
-          <div className="inline-flex items-center gap-2.5 mb-4 bg-forest-deep/60 backdrop-blur-md px-3.5 py-1 border border-sand/30">
+          <div className="inline-flex items-center gap-2.5 mb-4 bg-forest-deep/70 backdrop-blur-md px-3.5 py-1.5 border border-sand/30 rounded-full">
             <span className="w-1.5 h-1.5 rounded-full bg-sand" />
             <p className="text-[10px] tracking-ultra uppercase text-sand-light font-medium">
               Property Appointments
@@ -151,25 +152,25 @@ export default function AmenitiesPage() {
                 <span className="flex-1 h-px bg-sand/20" />
               </div>
 
-              {/* 2-Column Luxury Cards */}
+              {/* 2-Column Luxury Cards with rounded-2xl */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10 sm:gap-12">
                 {section.items.map((item) => (
                   <div
                     key={item.title}
-                    className="group bg-cream border border-sand/25 hover:border-sand/55 transition-all duration-500 hover:shadow-luxury-lg overflow-hidden flex flex-col"
+                    className="group bg-cream border border-sand/25 hover:border-sand/55 transition-all duration-500 hover:shadow-luxury-lg overflow-hidden flex flex-col rounded-2xl"
                   >
-                    <div className="relative aspect-[16/10] overflow-hidden bg-forest-dark">
+                    <div className="relative aspect-[16/10] overflow-hidden bg-forest-dark rounded-t-2xl">
                       <Image
                         src={item.image}
                         alt={item.title}
                         fill
                         sizes="(min-width: 1024px) 50vw, 100vw"
-                        className="object-cover transition-transform duration-700 ease-elegant group-hover:scale-105"
+                        className="object-cover transition-transform duration-700 ease-elegant group-hover:scale-105 rounded-t-2xl"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/60 via-transparent to-transparent opacity-50 group-hover:opacity-30 transition-opacity" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/60 via-transparent to-transparent opacity-50 group-hover:opacity-30 transition-opacity rounded-t-2xl" />
                     </div>
 
-                    <div className="p-8 flex flex-col flex-1 justify-between">
+                    <div className="p-8 flex flex-col flex-1 justify-between rounded-b-2xl">
                       <div>
                         <span className="text-[10px] tracking-ultra uppercase text-sand-dark font-medium block mb-1">
                           {item.subtitle}
@@ -202,9 +203,9 @@ export default function AmenitiesPage() {
         </div>
       </section>
 
-      {/* Book Experience CTA */}
-      <section className="bg-mist/30 py-24 border-t border-sand/20 text-center">
-        <div className="container-content max-w-3xl mx-auto">
+      {/* Book Experience CTA with rounded-2xl */}
+      <section className="container-content py-16 mb-24">
+        <div className="bg-mist/40 p-10 sm:p-14 rounded-2xl border border-sand/30 shadow-luxury-md text-center max-w-3xl mx-auto">
           <SectionHeading
             align="center"
             eyebrow="Direct Reservations"
@@ -215,7 +216,7 @@ export default function AmenitiesPage() {
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/book"
-              className="inline-flex items-center gap-3 px-9 py-4 bg-forest text-cream text-xs tracking-luxury uppercase font-medium hover:bg-forest-dark transition-all shadow-md hover:shadow-xl"
+              className="inline-flex items-center gap-3 px-9 py-4 bg-forest text-cream text-xs tracking-luxury uppercase font-medium hover:bg-forest-dark transition-all shadow-md hover:shadow-xl rounded-lg"
             >
               <span>Check Availability</span>
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -224,7 +225,7 @@ export default function AmenitiesPage() {
             </Link>
             <Link
               href="/stay"
-              className="inline-flex items-center gap-2 px-9 py-4 border border-sand text-forest text-xs tracking-luxury uppercase font-medium hover:bg-sand/10 transition-colors"
+              className="inline-flex items-center gap-2 px-9 py-4 border border-sand/60 text-forest text-xs tracking-luxury uppercase font-medium hover:bg-sand/10 transition-colors rounded-lg"
             >
               <span>View Residences</span>
             </Link>

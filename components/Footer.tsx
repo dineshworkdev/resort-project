@@ -30,7 +30,7 @@ export default function Footer() {
           </div>
 
           {subscribed ? (
-            <div className="bg-sand/15 border border-sand/30 px-6 py-4 text-sm text-sand-light">
+            <div className="bg-sand/15 border border-sand/30 px-6 py-4 rounded-xl text-sm text-sand-light">
               Thank you for subscribing to Deccan Resort dispatches. We look forward to sharing our seasons with you.
             </div>
           ) : (
@@ -44,11 +44,11 @@ export default function Footer() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email address"
                 required
-                className="px-4 py-3.5 bg-forest-dark/70 border border-sand/30 text-cream placeholder:text-cream/40 text-sm focus:outline-none focus:border-sand flex-1"
+                className="px-4 py-3.5 bg-forest-dark/70 border border-sand/30 text-cream placeholder:text-cream/40 text-sm focus:outline-none focus:border-sand flex-1 rounded-lg"
               />
               <button
                 type="submit"
-                className="px-7 py-3.5 bg-sand text-forest-deep text-xs tracking-luxury uppercase font-medium hover:bg-sand-light transition-colors shrink-0"
+                className="px-7 py-3.5 bg-sand text-forest-deep text-xs tracking-luxury uppercase font-medium hover:bg-sand-light transition-colors shrink-0 rounded-lg shadow-sm"
               >
                 Subscribe
               </button>
@@ -63,20 +63,22 @@ export default function Footer() {
           
           {/* Brand & Overview */}
           <div className="lg:col-span-2">
-            <div className="max-w-xs">
-              <Logo variant="full" theme="light" />
+            {/* Footer Logo: Full logo on a subtle warm off-white/cream background as requested */}
+            <div className="mb-6">
+              <Logo variant="footer" />
             </div>
-            <p className="mt-6 max-w-sm text-sm leading-relaxed text-cream/70 font-light">
+
+            <p className="max-w-sm text-sm leading-relaxed text-cream/70 font-light">
               A private luxury nature sanctuary nestled within the forested foothills of the Western Ghats, 
               crafted around slow living, Ayurvedic restoration, and undisturbed wilderness.
             </p>
 
             <div className="mt-6 inline-flex flex-wrap items-center gap-3 text-xs text-sand-light/80">
-              <span>Coimbatore, Tamil Nadu</span>
+              <span className="bg-forest/60 px-3 py-1 rounded-full border border-sand/20">Coimbatore, Tamil Nadu</span>
               <span>•</span>
-              <span>Western Ghats Foothills</span>
+              <span className="bg-forest/60 px-3 py-1 rounded-full border border-sand/20">Western Ghats Foothills</span>
               <span>•</span>
-              <span>Shola Buffer Belt</span>
+              <span className="bg-forest/60 px-3 py-1 rounded-full border border-sand/20">Shola Buffer Belt</span>
             </div>
           </div>
 

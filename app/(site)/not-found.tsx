@@ -15,13 +15,13 @@ export default function NotFound() {
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
           <Link
             href="/"
-            className="inline-flex items-center px-8 py-3.5 bg-forest text-cream text-sm hover:bg-forest-dark transition-colors duration-200"
+            className="inline-flex items-center px-8 py-3.5 bg-forest text-cream text-sm rounded-lg hover:bg-forest-dark transition-colors duration-200"
           >
             Return home
           </Link>
           <Link
             href="/stay"
-            className="inline-flex items-center px-8 py-3.5 border border-charcoal/20 text-charcoal text-sm hover:border-forest hover:text-forest transition-colors duration-200"
+            className="inline-flex items-center px-8 py-3.5 border border-charcoal/20 text-charcoal text-sm rounded-lg hover:border-forest hover:text-forest transition-colors duration-200"
           >
             View rooms
           </Link>

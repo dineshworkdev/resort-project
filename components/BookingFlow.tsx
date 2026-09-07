@@ -127,7 +127,7 @@ export default function BookingFlow() {
 
   return (
     <div className="container-content pt-36 pb-28">
-      {/* Editorial Step Timeline */}
+      {/* Editorial Step Timeline with rounded pills */}
       {step !== "confirmation" && (
         <div className="mb-14 pb-8 border-b border-sand/20">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
@@ -139,7 +139,7 @@ export default function BookingFlow() {
                 Residency Booking
               </h1>
             </div>
-            <div className="flex items-center gap-2 text-xs text-charcoal/60">
+            <div className="flex items-center gap-2 text-xs text-charcoal/60 bg-sand/10 px-3 py-1.5 rounded-full border border-sand/20">
               <span className="w-2 h-2 rounded-full bg-sand-dark" />
               <span>Step {currentIndex + 1} of {steps.length}</span>
             </div>
@@ -208,11 +208,11 @@ export default function BookingFlow() {
             </p>
           </div>
 
-          {/* Luxury Folio Voucher Card */}
-          <div className="bg-cream border border-sand/35 shadow-luxury-float overflow-hidden">
+          {/* Luxury Folio Voucher Card with rounded-2xl */}
+          <div className="bg-cream border border-sand/35 shadow-luxury-float overflow-hidden rounded-2xl">
             <div className="bg-forest-deep text-cream p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-6 border-b border-sand/30">
               <div>
-                <Logo variant="full" theme="light" />
+                <Logo variant="footer" />
               </div>
               <div className="sm:text-right">
                 <p className="text-[10px] tracking-ultra uppercase text-sand-light font-medium">
@@ -254,8 +254,8 @@ export default function BookingFlow() {
                 <span className="font-display text-3xl text-forest">₹{total.toLocaleString("en-IN")}</span>
               </div>
 
-              {/* Inclusions */}
-              <div className="bg-mist/30 p-5 border border-sand/25 text-xs text-charcoal/70 space-y-2">
+              {/* Inclusions with rounded-xl */}
+              <div className="bg-mist/30 p-5 border border-sand/25 text-xs text-charcoal/70 space-y-2 rounded-xl">
                 <p className="font-medium text-forest uppercase tracking-wider text-[11px]">
                   Included Privileges:
                 </p>
@@ -273,13 +273,13 @@ export default function BookingFlow() {
               <div className="flex items-center gap-3">
                 <button
                   onClick={() => window.print()}
-                  className="px-5 py-2.5 bg-cream border border-sand/40 text-forest hover:bg-sand/20 transition-colors uppercase tracking-luxury font-medium"
+                  className="px-5 py-2.5 bg-cream border border-sand/40 text-forest hover:bg-sand/20 transition-colors uppercase tracking-luxury font-medium rounded-lg shadow-sm"
                 >
                   Print Voucher
                 </button>
                 <Link
                   href="/"
-                  className="px-5 py-2.5 bg-forest text-cream hover:bg-forest-dark transition-colors uppercase tracking-luxury font-medium"
+                  className="px-5 py-2.5 bg-forest text-cream hover:bg-forest-dark transition-colors uppercase tracking-luxury font-medium rounded-lg shadow-sm"
                 >
                   Return to Home
                 </Link>
@@ -296,7 +296,7 @@ export default function BookingFlow() {
             
             {/* Step 1: Dates & Guests */}
             {step === "dates" && (
-              <div className="glass-card p-8 sm:p-10 border border-sand/30 shadow-luxury-md animate-fade-in">
+              <div className="glass-card p-8 sm:p-10 border border-sand/30 shadow-luxury-md animate-fade-in rounded-2xl">
                 <span className="text-[10px] tracking-ultra uppercase text-sand-dark font-medium block mb-2">
                   Step 01
                 </span>
@@ -323,7 +323,7 @@ export default function BookingFlow() {
                           setCheckOut("");
                         }
                       }}
-                      className="border border-sand/30 bg-cream/70 px-4 py-3.5 text-sm text-charcoal focus:border-forest outline-none transition-colors cursor-pointer"
+                      className="border border-sand/30 bg-cream/70 px-4 py-3.5 text-sm text-charcoal focus:border-forest outline-none transition-colors cursor-pointer rounded-lg"
                     />
                     {errors.checkIn && (
                       <p className="text-xs text-red-600 mt-1">{errors.checkIn}</p>
@@ -340,7 +340,7 @@ export default function BookingFlow() {
                       min={checkIn || todayStr}
                       value={checkOut}
                       onChange={(e) => setCheckOut(e.target.value)}
-                      className="border border-sand/30 bg-cream/70 px-4 py-3.5 text-sm text-charcoal focus:border-forest outline-none transition-colors cursor-pointer"
+                      className="border border-sand/30 bg-cream/70 px-4 py-3.5 text-sm text-charcoal focus:border-forest outline-none transition-colors cursor-pointer rounded-lg"
                     />
                     {errors.checkOut && (
                       <p className="text-xs text-red-600 mt-1">{errors.checkOut}</p>
@@ -356,7 +356,7 @@ export default function BookingFlow() {
                     id="guests"
                     value={guestsCount}
                     onChange={(e) => setGuestsCount(e.target.value)}
-                    className="border border-sand/30 bg-cream/70 px-4 py-3.5 text-sm text-charcoal focus:border-forest outline-none transition-colors cursor-pointer"
+                    className="border border-sand/30 bg-cream/70 px-4 py-3.5 text-sm text-charcoal focus:border-forest outline-none transition-colors cursor-pointer rounded-lg"
                   >
                     {[1, 2, 3, 4, 5, 6].map((n) => (
                       <option key={n} value={n}>
@@ -375,7 +375,7 @@ export default function BookingFlow() {
                   <button
                     disabled={isVerifying}
                     onClick={handleCheckDatesAndProceed}
-                    className="inline-flex items-center gap-3 px-9 py-4 bg-forest text-cream text-xs tracking-luxury uppercase font-medium hover:bg-forest-dark transition-all shadow-md hover:shadow-xl disabled:opacity-70"
+                    className="inline-flex items-center gap-3 px-9 py-4 bg-forest text-cream text-xs tracking-luxury uppercase font-medium hover:bg-forest-dark transition-all shadow-md hover:shadow-xl disabled:opacity-70 rounded-lg"
                   >
                     {isVerifying ? (
                       <span>Verifying Availability...</span>
@@ -414,19 +414,19 @@ export default function BookingFlow() {
                       <div
                         key={room.id}
                         onClick={() => setSelectedRoom(room)}
-                        className={`group cursor-pointer bg-cream border transition-all duration-300 p-5 sm:p-6 flex flex-col md:flex-row gap-6 ${
+                        className={`group cursor-pointer bg-cream border transition-all duration-300 p-5 sm:p-6 flex flex-col md:flex-row gap-6 rounded-2xl ${
                           isSelected
                             ? "border-forest shadow-luxury-lg bg-sand/10 ring-1 ring-forest"
                             : "border-sand/30 hover:border-sand hover:shadow-luxury"
                         }`}
                       >
-                        <div className="relative w-full md:w-64 h-48 md:h-auto shrink-0 overflow-hidden bg-forest-dark border border-sand/20">
+                        <div className="relative w-full md:w-64 h-48 md:h-auto shrink-0 overflow-hidden bg-forest-dark border border-sand/20 rounded-xl">
                           <Image
                             src={room.image}
                             alt={room.name}
                             fill
                             sizes="(min-width: 768px) 256px, 100vw"
-                            className="object-cover transition-transform duration-700 ease-elegant group-hover:scale-105"
+                            className="object-cover transition-transform duration-700 ease-elegant group-hover:scale-105 rounded-xl"
                           />
                         </div>
 
@@ -436,7 +436,7 @@ export default function BookingFlow() {
                               <h3 className="font-display text-2xl text-forest">
                                 {room.name}
                               </h3>
-                              <span className="text-xs px-2.5 py-1 bg-cream text-sand-dark font-medium border border-sand/20">
+                              <span className="text-xs px-2.5 py-1 bg-cream text-sand-dark font-medium border border-sand/20 rounded-full">
                                 {room.status}
                               </span>
                             </div>
@@ -451,7 +451,7 @@ export default function BookingFlow() {
 
                             <div className="mt-4 flex flex-wrap gap-2">
                               {room.amenities.slice(0, 3).map((a) => (
-                                <span key={a} className="text-[11px] bg-sand/15 text-forest px-2.5 py-1">
+                                <span key={a} className="text-[11px] bg-sand/15 text-forest px-2.5 py-1 rounded-md">
                                   {a}
                                 </span>
                               ))}
@@ -472,7 +472,7 @@ export default function BookingFlow() {
                                 setSelectedRoom(room);
                                 goTo("details");
                               }}
-                              className={`px-6 py-2.5 text-xs tracking-luxury uppercase font-medium transition-colors ${
+                              className={`px-6 py-2.5 text-xs tracking-luxury uppercase font-medium transition-colors rounded-lg shadow-sm ${
                                 isSelected
                                   ? "bg-forest text-cream hover:bg-forest-dark"
                                   : "bg-sand text-forest-deep hover:bg-sand-light"
@@ -496,7 +496,7 @@ export default function BookingFlow() {
                   </button>
                   <button
                     onClick={() => goTo("details")}
-                    className="inline-flex items-center gap-2 px-8 py-3.5 bg-forest text-cream text-xs tracking-luxury uppercase font-medium hover:bg-forest-dark transition-all shadow-md"
+                    className="inline-flex items-center gap-2 px-8 py-3.5 bg-forest text-cream text-xs tracking-luxury uppercase font-medium hover:bg-forest-dark transition-all shadow-md rounded-lg"
                   >
                     <span>Proceed to Guest Details</span>
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -509,7 +509,7 @@ export default function BookingFlow() {
 
             {/* Step 3: Guest Details */}
             {step === "details" && selectedRoom && (
-              <div className="glass-card p-8 sm:p-10 border border-sand/30 shadow-luxury-md animate-fade-in">
+              <div className="glass-card p-8 sm:p-10 border border-sand/30 shadow-luxury-md animate-fade-in rounded-2xl">
                 <span className="text-[10px] tracking-ultra uppercase text-sand-dark font-medium block mb-2">
                   Step 03
                 </span>
@@ -531,7 +531,7 @@ export default function BookingFlow() {
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
                       placeholder="e.g. Vikramaditya Rao"
-                      className="border border-sand/30 bg-cream/70 px-4 py-3.5 text-sm text-charcoal focus:border-forest outline-none transition-colors"
+                      className="border border-sand/30 bg-cream/70 px-4 py-3.5 text-sm text-charcoal focus:border-forest outline-none transition-colors rounded-lg"
                     />
                     {errors.fullName && (
                       <p className="text-xs text-red-600 mt-1">{errors.fullName}</p>
@@ -549,7 +549,7 @@ export default function BookingFlow() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="you@domain.com"
-                        className="border border-sand/30 bg-cream/70 px-4 py-3.5 text-sm text-charcoal focus:border-forest outline-none transition-colors"
+                        className="border border-sand/30 bg-cream/70 px-4 py-3.5 text-sm text-charcoal focus:border-forest outline-none transition-colors rounded-lg"
                       />
                       {errors.email && (
                         <p className="text-xs text-red-600 mt-1">{errors.email}</p>
@@ -566,7 +566,7 @@ export default function BookingFlow() {
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         placeholder="+91 98765 43210"
-                        className="border border-sand/30 bg-cream/70 px-4 py-3.5 text-sm text-charcoal focus:border-forest outline-none transition-colors"
+                        className="border border-sand/30 bg-cream/70 px-4 py-3.5 text-sm text-charcoal focus:border-forest outline-none transition-colors rounded-lg"
                       />
                       {errors.phone && (
                         <p className="text-xs text-red-600 mt-1">{errors.phone}</p>
@@ -584,7 +584,7 @@ export default function BookingFlow() {
                       onChange={(e) => setRequests(e.target.value)}
                       rows={4}
                       placeholder="Please note dietary restrictions, approximate arrival time, or special celebrations..."
-                      className="border border-sand/30 bg-cream/70 px-4 py-3.5 text-sm text-charcoal focus:border-forest outline-none transition-colors resize-none"
+                      className="border border-sand/30 bg-cream/70 px-4 py-3.5 text-sm text-charcoal focus:border-forest outline-none transition-colors resize-none rounded-lg"
                     />
                   </div>
                 </div>
@@ -598,7 +598,7 @@ export default function BookingFlow() {
                   </button>
                   <button
                     onClick={() => validateDetails() && goTo("review")}
-                    className="inline-flex items-center gap-2 px-8 py-3.5 bg-forest text-cream text-xs tracking-luxury uppercase font-medium hover:bg-forest-dark transition-all shadow-md"
+                    className="inline-flex items-center gap-2 px-8 py-3.5 bg-forest text-cream text-xs tracking-luxury uppercase font-medium hover:bg-forest-dark transition-all shadow-md rounded-lg"
                   >
                     <span>Review Reservation</span>
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -611,7 +611,7 @@ export default function BookingFlow() {
 
             {/* Step 4: Review */}
             {step === "review" && selectedRoom && (
-              <div className="glass-card p-8 sm:p-10 border border-sand/30 shadow-luxury-md animate-fade-in">
+              <div className="glass-card p-8 sm:p-10 border border-sand/30 shadow-luxury-md animate-fade-in rounded-2xl">
                 <span className="text-[10px] tracking-ultra uppercase text-sand-dark font-medium block mb-2">
                   Step 04
                 </span>
@@ -622,7 +622,7 @@ export default function BookingFlow() {
                   Please confirm all reservation parameters before securing your stay.
                 </p>
 
-                <div className="mt-8 border border-sand/25 divide-y divide-sand/20 bg-cream text-sm">
+                <div className="mt-8 border border-sand/25 divide-y divide-sand/20 bg-cream text-sm rounded-xl overflow-hidden shadow-sm">
                   <div className="p-5 flex justify-between items-center">
                     <span className="text-charcoal/60">Residence</span>
                     <span className="font-display text-base text-forest font-medium">{selectedRoom.name}</span>
@@ -666,7 +666,7 @@ export default function BookingFlow() {
                   </button>
                   <button
                     onClick={() => goTo("payment")}
-                    className="inline-flex items-center gap-2 px-8 py-3.5 bg-forest text-cream text-xs tracking-luxury uppercase font-medium hover:bg-forest-dark transition-all shadow-md"
+                    className="inline-flex items-center gap-2 px-8 py-3.5 bg-forest text-cream text-xs tracking-luxury uppercase font-medium hover:bg-forest-dark transition-all shadow-md rounded-lg"
                   >
                     <span>Proceed to Guarantee</span>
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -679,7 +679,7 @@ export default function BookingFlow() {
 
             {/* Step 5: Payment Guarantee */}
             {step === "payment" && selectedRoom && (
-              <div className="glass-card p-8 sm:p-10 border border-sand/30 shadow-luxury-md animate-fade-in">
+              <div className="glass-card p-8 sm:p-10 border border-sand/30 shadow-luxury-md animate-fade-in rounded-2xl">
                 <span className="text-[10px] tracking-ultra uppercase text-sand-dark font-medium block mb-2">
                   Step 05
                 </span>
@@ -701,7 +701,7 @@ export default function BookingFlow() {
                       value={cardName}
                       onChange={(e) => setCardName(e.target.value)}
                       placeholder="e.g. Vikramaditya Rao"
-                      className="border border-sand/30 bg-cream/70 px-4 py-3.5 text-sm text-charcoal focus:border-forest outline-none transition-colors"
+                      className="border border-sand/30 bg-cream/70 px-4 py-3.5 text-sm text-charcoal focus:border-forest outline-none transition-colors rounded-lg"
                     />
                     {errors.cardName && (
                       <p className="text-xs text-red-600 mt-1">{errors.cardName}</p>
@@ -719,7 +719,7 @@ export default function BookingFlow() {
                       value={cardNumber}
                       onChange={(e) => setCardNumber(e.target.value)}
                       placeholder="4111 2222 3333 4444"
-                      className="border border-sand/30 bg-cream/70 px-4 py-3.5 text-sm text-charcoal focus:border-forest outline-none transition-colors"
+                      className="border border-sand/30 bg-cream/70 px-4 py-3.5 text-sm text-charcoal focus:border-forest outline-none transition-colors rounded-lg"
                     />
                     {errors.cardNumber && (
                       <p className="text-xs text-red-600 mt-1">{errors.cardNumber}</p>
@@ -737,7 +737,7 @@ export default function BookingFlow() {
                         value={cardExpiry}
                         onChange={(e) => setCardExpiry(e.target.value)}
                         placeholder="12/28"
-                        className="border border-sand/30 bg-cream/70 px-4 py-3.5 text-sm text-charcoal focus:border-forest outline-none transition-colors"
+                        className="border border-sand/30 bg-cream/70 px-4 py-3.5 text-sm text-charcoal focus:border-forest outline-none transition-colors rounded-lg"
                       />
                       {errors.cardExpiry && (
                         <p className="text-xs text-red-600 mt-1">{errors.cardExpiry}</p>
@@ -755,7 +755,7 @@ export default function BookingFlow() {
                         value={cardCvc}
                         onChange={(e) => setCardCvc(e.target.value)}
                         placeholder="789"
-                        className="border border-sand/30 bg-cream/70 px-4 py-3.5 text-sm text-charcoal focus:border-forest outline-none transition-colors"
+                        className="border border-sand/30 bg-cream/70 px-4 py-3.5 text-sm text-charcoal focus:border-forest outline-none transition-colors rounded-lg"
                       />
                       {errors.cardCvc && (
                         <p className="text-xs text-red-600 mt-1">{errors.cardCvc}</p>
@@ -764,7 +764,7 @@ export default function BookingFlow() {
                   </div>
                 </div>
 
-                <div className="mt-8 p-4 bg-mist/30 border border-sand/20 text-xs text-charcoal/65 leading-relaxed">
+                <div className="mt-8 p-4 bg-mist/30 border border-sand/20 text-xs text-charcoal/65 leading-relaxed rounded-xl">
                   🔒 Encrypted Booking Guarantee. Your payment details are safely tokenized and not billed until check-in. Free cancellation up to 48 hours before arrival.
                 </div>
 
@@ -778,7 +778,7 @@ export default function BookingFlow() {
                   <button
                     disabled={isVerifying}
                     onClick={handleConfirmPayment}
-                    className="inline-flex items-center gap-2 px-9 py-4 bg-forest text-cream text-xs tracking-luxury uppercase font-medium hover:bg-forest-dark transition-all shadow-md hover:shadow-xl disabled:opacity-70"
+                    className="inline-flex items-center gap-2 px-9 py-4 bg-forest text-cream text-xs tracking-luxury uppercase font-medium hover:bg-forest-dark transition-all shadow-md hover:shadow-xl disabled:opacity-70 rounded-lg"
                   >
                     {isVerifying ? (
                       <span>Securing Reservation Folio...</span>
@@ -797,25 +797,25 @@ export default function BookingFlow() {
 
           </div>
 
-          {/* Sticky Luxury Reservation Summary Sidebar */}
+          {/* Sticky Luxury Reservation Summary Sidebar with rounded-2xl */}
           <aside className="lg:col-span-4 sticky top-28">
-            <div className="glass-card p-6 sm:p-7 border border-sand/30 shadow-luxury-float">
+            <div className="glass-card p-6 sm:p-7 border border-sand/30 shadow-luxury-float rounded-2xl">
               
               <span className="text-[10px] tracking-ultra uppercase text-sand-dark font-semibold block mb-4">
                 Reservation Summary
               </span>
 
-              {/* Room Image Preview */}
+              {/* Room Image Preview with rounded-xl */}
               {selectedRoom && (
-                <div className="relative aspect-[16/10] overflow-hidden bg-forest-dark border border-sand/20 mb-5">
+                <div className="relative aspect-[16/10] overflow-hidden bg-forest-dark border border-sand/20 mb-5 rounded-xl">
                   <Image
                     src={selectedRoom.image}
                     alt={selectedRoom.name}
                     fill
                     sizes="(min-width: 1024px) 33vw, 100vw"
-                    className="object-cover"
+                    className="object-cover rounded-xl"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/60 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/60 to-transparent rounded-xl" />
                   <span className="absolute bottom-2.5 left-3 text-cream font-display text-base">
                     {selectedRoom.name}
                   </span>

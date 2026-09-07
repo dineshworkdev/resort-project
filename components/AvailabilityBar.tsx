@@ -28,7 +28,7 @@ export default function AvailabilityBar() {
     <div className="w-full">
       <form
         onSubmit={handleSubmit}
-        className="glass-card shadow-luxury-float p-4 sm:p-6 lg:p-7 border border-sand/35 transition-all duration-300"
+        className="glass-card shadow-luxury-float p-4 sm:p-6 lg:p-7 border border-sand/35 transition-all duration-300 rounded-2xl"
       >
         <div className="flex flex-col lg:flex-row items-stretch lg:items-center gap-4 lg:gap-0 divide-y lg:divide-y-0 lg:divide-x divide-sand/20">
           
@@ -54,7 +54,7 @@ export default function AvailabilityBar() {
                 }
               }}
               required
-              className="w-full bg-transparent text-sm md:text-base font-display text-forest font-medium focus:outline-none cursor-pointer"
+              className="w-full bg-transparent text-sm md:text-base font-display text-forest font-medium focus:outline-none cursor-pointer rounded-md"
             />
           </div>
 
@@ -75,7 +75,7 @@ export default function AvailabilityBar() {
               value={checkOut}
               onChange={(e) => setCheckOut(e.target.value)}
               required
-              className="w-full bg-transparent text-sm md:text-base font-display text-forest font-medium focus:outline-none cursor-pointer"
+              className="w-full bg-transparent text-sm md:text-base font-display text-forest font-medium focus:outline-none cursor-pointer rounded-md"
             />
           </div>
 
@@ -93,7 +93,7 @@ export default function AvailabilityBar() {
               id="guests"
               value={guestsCount}
               onChange={(e) => setGuestsCount(e.target.value)}
-              className="w-full bg-transparent text-sm md:text-base font-display text-forest font-medium focus:outline-none cursor-pointer pr-2"
+              className="w-full bg-transparent text-sm md:text-base font-display text-forest font-medium focus:outline-none cursor-pointer pr-2 rounded-md"
             >
               {[1, 2, 3, 4, 5, 6].map((n) => (
                 <option key={n} value={n} className="bg-cream text-charcoal">
@@ -107,7 +107,7 @@ export default function AvailabilityBar() {
           <div className="pt-4 lg:pt-0 lg:pl-6 shrink-0 flex items-center">
             <button
               type="submit"
-              className="w-full lg:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-forest text-cream text-xs tracking-luxury uppercase font-medium hover:bg-forest-dark transition-all duration-300 shadow-md hover:shadow-xl group"
+              className="w-full lg:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-forest text-cream text-xs tracking-luxury uppercase font-medium hover:bg-forest-dark transition-all duration-300 shadow-md hover:shadow-xl group rounded-lg"
             >
               <span>Check Availability</span>
               <svg
@@ -125,15 +125,15 @@ export default function AvailabilityBar() {
         {/* Direct Booking Reassurance Micro-banner */}
         <div className="mt-4 pt-3 border-t border-sand/15 hidden sm:flex items-center justify-between text-[11px] text-charcoal/65">
           <div className="flex items-center gap-5">
-            <span className="flex items-center gap-1.5">
+            <span className="flex items-center gap-1.5 bg-sand/10 px-3 py-1 rounded-full border border-sand/20">
               <span className="w-1.5 h-1.5 rounded-full bg-sand-dark" />
               Direct Rate Guarantee
             </span>
-            <span className="flex items-center gap-1.5">
+            <span className="flex items-center gap-1.5 bg-sand/10 px-3 py-1 rounded-full border border-sand/20">
               <span className="w-1.5 h-1.5 rounded-full bg-sand-dark" />
               Estate Breakfast Included
             </span>
-            <span className="flex items-center gap-1.5">
+            <span className="flex items-center gap-1.5 bg-sand/10 px-3 py-1 rounded-full border border-sand/20">
               <span className="w-1.5 h-1.5 rounded-full bg-sand-dark" />
               Sunset Tea Gathering
             </span>

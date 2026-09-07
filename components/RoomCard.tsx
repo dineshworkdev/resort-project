@@ -7,9 +7,9 @@ export default function RoomCard({ room }: { room: Room }) {
   const isLimited = room.status === "Limited";
 
   return (
-    <div className="group relative bg-cream border border-sand/25 hover:border-sand/60 transition-all duration-500 hover:shadow-luxury-lg overflow-hidden flex flex-col h-full">
-      {/* Image Showcase */}
-      <div className="relative aspect-[4/3] sm:aspect-[16/11] overflow-hidden bg-forest-dark">
+    <div className="group relative bg-cream border border-sand/25 hover:border-sand/60 transition-all duration-500 hover:shadow-luxury-lg overflow-hidden flex flex-col h-full rounded-2xl">
+      {/* Image Showcase with top rounded corners */}
+      <div className="relative aspect-[4/3] sm:aspect-[16/11] overflow-hidden bg-forest-dark rounded-t-2xl">
         <Image
           src={room.image}
           alt={`${room.name} at Deccan Resort`}
@@ -19,39 +19,39 @@ export default function RoomCard({ room }: { room: Room }) {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/70 via-forest-deep/15 to-transparent opacity-75 group-hover:opacity-50 transition-opacity duration-500" />
 
-        {/* Top Status & Category Badges */}
+        {/* Top Status & Category Badges with rounded pills */}
         <div className="absolute top-4 left-4 flex flex-col gap-1.5 items-start z-10">
           {isFlagship && (
-            <span className="inline-flex items-center gap-1.5 bg-sand text-forest-deep text-[10px] tracking-luxury uppercase font-semibold px-3 py-1 shadow-sm border border-sand-light/50">
+            <span className="inline-flex items-center gap-1.5 bg-sand text-forest-deep text-[10px] tracking-luxury uppercase font-semibold px-3 py-1 shadow-sm border border-sand-light/50 rounded-full">
               <span className="w-1.5 h-1.5 rounded-full bg-forest-deep" />
               Flagship Residence
             </span>
           )}
           {isLimited && (
-            <span className="inline-flex items-center gap-1.5 bg-cream/95 backdrop-blur-md text-forest text-[10px] tracking-luxury uppercase font-semibold px-3 py-1 shadow-sm border border-sand/30">
+            <span className="inline-flex items-center gap-1.5 bg-cream/95 backdrop-blur-md text-forest text-[10px] tracking-luxury uppercase font-semibold px-3 py-1 shadow-sm border border-sand/30 rounded-full">
               <span className="w-1.5 h-1.5 rounded-full bg-sand-dark animate-pulse" />
               Limited Availability
             </span>
           )}
           {!isFlagship && !isLimited && (
-            <span className="inline-flex items-center bg-forest-deep/80 backdrop-blur-md text-sand-light text-[10px] tracking-luxury uppercase font-medium px-3 py-1 border border-sand/30">
+            <span className="inline-flex items-center bg-forest-deep/80 backdrop-blur-md text-sand-light text-[10px] tracking-luxury uppercase font-medium px-3 py-1 border border-sand/30 rounded-full">
               Available
             </span>
           )}
         </div>
 
-        {/* Floating Room Size Tag */}
-        <div className="absolute bottom-3 right-3 bg-forest-deep/85 backdrop-blur-md text-cream text-[11px] font-medium px-3 py-1 tracking-wider border border-sand/25 z-10">
+        {/* Floating Room Size Tag with rounded corners */}
+        <div className="absolute bottom-3 right-3 bg-forest-deep/85 backdrop-blur-md text-cream text-[11px] font-medium px-3 py-1 tracking-wider border border-sand/25 z-10 rounded-md">
           {room.size}
         </div>
       </div>
 
-      {/* Card Content */}
-      <div className="p-6 sm:p-7 flex flex-col flex-1 justify-between bg-cream">
+      {/* Card Content with bottom rounded corners */}
+      <div className="p-6 sm:p-7 flex flex-col flex-1 justify-between bg-cream rounded-b-2xl">
         <div>
           {/* Key Specs Pills */}
           <div className="flex flex-wrap items-center gap-2.5 text-xs text-charcoal/65 mb-3">
-            <span className="inline-flex items-center gap-1.5 font-medium">
+            <span className="inline-flex items-center gap-1.5 font-medium bg-sand/10 px-2.5 py-0.5 rounded-full border border-sand/20">
               <svg className="w-3.5 h-3.5 text-sand-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
@@ -88,7 +88,7 @@ export default function RoomCard({ room }: { room: Room }) {
           <div className="flex items-center gap-2">
             <Link
               href={`/stay/${room.slug}`}
-              className="inline-flex items-center gap-1.5 px-4 py-2.5 border border-forest/20 text-xs tracking-luxury uppercase text-forest font-medium hover:bg-forest hover:text-cream transition-all duration-300 group/btn"
+              className="inline-flex items-center gap-1.5 px-4 py-2.5 border border-forest/20 text-xs tracking-luxury uppercase text-forest font-medium hover:bg-forest hover:text-cream transition-all duration-300 group/btn rounded-lg shadow-sm"
               aria-label={`View details for ${room.name}`}
             >
               <span>Explore</span>

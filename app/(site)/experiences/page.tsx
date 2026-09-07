@@ -62,13 +62,14 @@ export default function ExperiencesPage() {
           src={images.experiences.forestTrail}
           alt="Ancient forest canopy trail near Deccan Resort"
           fill
+          priority
           sizes="100vw"
           className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-forest-deep via-forest-deep/60 to-forest-deep/30" />
         
         <div className="relative container-content pb-16 z-10 max-w-4xl">
-          <div className="inline-flex items-center gap-2.5 mb-4 bg-forest-deep/60 backdrop-blur-md px-3.5 py-1 border border-sand/30">
+          <div className="inline-flex items-center gap-2.5 mb-4 bg-forest-deep/70 backdrop-blur-md px-3.5 py-1.5 border border-sand/30 rounded-full">
             <span className="w-1.5 h-1.5 rounded-full bg-sand" />
             <p className="text-[10px] tracking-ultra uppercase text-sand-light font-medium">
               Curated Immersion
@@ -100,20 +101,20 @@ export default function ExperiencesPage() {
                 i % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""
               }`}
             >
-              {/* Photography Showcase */}
+              {/* Photography Showcase with rounded-2xl */}
               <div className="lg:col-span-6 relative">
-                <div className="relative aspect-[4/3] sm:aspect-[16/11] overflow-hidden shadow-luxury-lg border border-sand/30">
+                <div className="relative aspect-[4/3] sm:aspect-[16/11] overflow-hidden shadow-luxury-lg border border-sand/30 rounded-2xl">
                   <Image
                     src={exp.image}
                     alt={exp.title}
                     fill
                     sizes="(min-width: 1024px) 50vw, 100vw"
-                    className="object-cover transition-transform duration-700 ease-elegant hover:scale-105"
+                    className="object-cover transition-transform duration-700 ease-elegant hover:scale-105 rounded-2xl"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/40 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/40 via-transparent to-transparent rounded-2xl" />
                 </div>
 
-                <div className="absolute top-4 left-4 bg-forest-deep/80 backdrop-blur-md text-sand-light text-[11px] font-medium px-3.5 py-1.5 border border-sand/30 tracking-wider">
+                <div className="absolute top-4 left-4 bg-forest-deep/85 backdrop-blur-md text-sand-light text-[11px] font-medium px-3.5 py-1.5 border border-sand/30 tracking-wider rounded-full">
                   {exp.duration}
                 </div>
               </div>
@@ -152,7 +153,7 @@ export default function ExperiencesPage() {
                 <div className="mt-8">
                   <Link
                     href="/book"
-                    className="inline-flex items-center gap-2 px-7 py-3.5 bg-forest text-cream text-xs tracking-luxury uppercase font-medium hover:bg-forest-dark transition-all shadow-sm hover:shadow-md"
+                    className="inline-flex items-center gap-2 px-7 py-3.5 bg-forest text-cream text-xs tracking-luxury uppercase font-medium hover:bg-forest-dark transition-all shadow-sm hover:shadow-md rounded-lg"
                   >
                     <span>Reserve With Your Stay</span>
                     <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -166,22 +167,22 @@ export default function ExperiencesPage() {
         </div>
       </section>
 
-      {/* Bespoke Private Concierge Banner */}
-      <section className="bg-forest-deep text-cream py-24 md:py-32 border-t border-sand/20">
-        <div className="container-content text-center max-w-3xl mx-auto">
+      {/* Bespoke Private Concierge Banner with rounded-2xl */}
+      <section className="container-content py-16 mb-24">
+        <div className="bg-forest-deep text-cream py-16 px-8 sm:px-14 rounded-2xl border border-sand/30 text-center max-w-4xl mx-auto shadow-luxury-lg">
           <span className="text-[10px] tracking-ultra uppercase text-sand-light font-medium block mb-3">
             Bespoke Planning
           </span>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-cream tracking-tight">
             Design a custom itinerary with our naturalist
           </h2>
-          <p className="mt-5 text-cream/80 text-base sm:text-lg font-light leading-relaxed">
+          <p className="mt-5 text-cream/80 text-base sm:text-lg font-light leading-relaxed max-w-2xl mx-auto">
             Whether you are planning birding photography, meditation retreats, or celebratory anniversary dinners overlooking the Western Ghats, our concierge team will shape every detail prior to your arrival.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <a
               href="mailto:concierge@deccanresort.in"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-sand text-forest-deep text-xs tracking-luxury uppercase font-medium hover:bg-sand-light transition-colors"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-sand text-forest-deep text-xs tracking-luxury uppercase font-medium hover:bg-sand-light transition-colors rounded-lg shadow-sm"
             >
               <span>Contact Resident Concierge</span>
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -190,7 +191,7 @@ export default function ExperiencesPage() {
             </a>
             <Link
               href="/stay"
-              className="inline-flex items-center gap-2 px-8 py-4 border border-cream/30 text-cream text-xs tracking-luxury uppercase font-medium hover:bg-cream/10 transition-colors"
+              className="inline-flex items-center gap-2 px-8 py-4 border border-cream/30 text-cream text-xs tracking-luxury uppercase font-medium hover:bg-cream/10 transition-colors rounded-lg"
             >
               <span>View Residences</span>
             </Link>

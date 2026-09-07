@@ -131,7 +131,7 @@ export default function GalleryPage() {
           description="Explore the architecture, shola forest sanctuary, serene residences, and mountain vistas overlooking Coimbatore's Western Ghats."
         />
 
-        {/* Category Filter Tabs */}
+        {/* Category Filter Tabs with rounded-full pills */}
         <div className="mt-12 flex flex-wrap items-center gap-2 sm:gap-3 border-b border-sand/20 pb-4">
           {categories.map((cat) => (
             <button
@@ -140,10 +140,10 @@ export default function GalleryPage() {
                 setActiveCategory(cat.id);
                 setLightboxIndex(null);
               }}
-              className={`px-5 py-2.5 text-xs tracking-luxury uppercase font-medium transition-all duration-300 ${
+              className={`px-5 py-2.5 text-xs tracking-luxury uppercase font-medium transition-all duration-300 rounded-full ${
                 activeCategory === cat.id
                   ? "bg-forest text-cream shadow-sm"
-                  : "bg-cream text-charcoal/70 hover:text-forest hover:bg-sand/15"
+                  : "bg-cream text-charcoal/70 hover:text-forest hover:bg-sand/15 border border-sand/20"
               }`}
             >
               {cat.label}
@@ -152,24 +152,24 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      {/* Editorial Gallery Grid */}
+      {/* Editorial Gallery Grid with rounded-2xl cards */}
       <section className="container-content pb-32">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {filteredItems.map((item, idx) => (
             <div
               key={item.src}
               onClick={() => setLightboxIndex(idx)}
-              className="group cursor-pointer bg-cream border border-sand/25 hover:border-sand/60 transition-all duration-500 hover:shadow-luxury-lg overflow-hidden flex flex-col"
+              className="group cursor-pointer bg-cream border border-sand/25 hover:border-sand/60 transition-all duration-500 hover:shadow-luxury-lg overflow-hidden flex flex-col rounded-2xl"
             >
-              <div className="relative aspect-[4/3] overflow-hidden bg-forest-dark">
+              <div className="relative aspect-[4/3] overflow-hidden bg-forest-dark rounded-t-2xl">
                 <Image
                   src={item.src}
                   alt={item.title}
                   fill
                   sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                  className="object-cover transition-transform duration-700 ease-elegant group-hover:scale-105"
+                  className="object-cover transition-transform duration-700 ease-elegant group-hover:scale-105 rounded-t-2xl"
                 />
-                <div className="absolute inset-0 bg-forest-deep/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <div className="absolute inset-0 bg-forest-deep/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center rounded-t-2xl">
                   <span className="p-3 rounded-full bg-cream/90 text-forest shadow-md transform scale-90 group-hover:scale-100 transition-transform">
                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
@@ -178,7 +178,7 @@ export default function GalleryPage() {
                 </div>
               </div>
 
-              <div className="p-5 flex flex-col justify-between">
+              <div className="p-5 flex flex-col justify-between rounded-b-2xl">
                 <h3 className="font-display text-lg text-forest group-hover:text-sand-dark transition-colors">
                   {item.title}
                 </h3>
@@ -200,14 +200,14 @@ export default function GalleryPage() {
         >
           {/* Top Bar */}
           <div className="flex items-center justify-between text-cream z-20">
-            <span className="text-xs tracking-luxury uppercase text-sand-light font-medium">
+            <span className="text-xs tracking-luxury uppercase text-sand-light font-medium bg-forest-dark/80 px-4 py-1.5 rounded-full border border-sand/30">
               Photograph {String(lightboxIndex + 1).padStart(2, "0")} / {String(filteredItems.length).padStart(2, "0")}
             </span>
             
             <button
               aria-label="Close Lightbox"
               onClick={() => setLightboxIndex(null)}
-              className="p-2 text-cream/70 hover:text-cream bg-white/10 rounded-full transition-colors"
+              className="p-2.5 text-cream/70 hover:text-cream bg-white/10 hover:bg-white/20 rounded-full transition-colors"
             >
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -215,7 +215,7 @@ export default function GalleryPage() {
             </button>
           </div>
 
-          {/* Center Image Container */}
+          {/* Center Image Container with rounded-xl */}
           <div className="relative flex-1 flex items-center justify-center my-4">
             {/* Prev Button */}
             <button
@@ -226,7 +226,7 @@ export default function GalleryPage() {
                   prev === null ? null : (prev - 1 + filteredItems.length) % filteredItems.length
                 );
               }}
-              className="absolute left-2 sm:left-4 z-20 p-3 rounded-full bg-forest-dark/70 hover:bg-forest text-cream border border-sand/30 transition-all hover:scale-110"
+              className="absolute left-2 sm:left-4 z-20 p-3 rounded-full bg-forest-dark/70 hover:bg-forest text-cream border border-sand/30 transition-all hover:scale-110 shadow-lg"
             >
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -234,13 +234,13 @@ export default function GalleryPage() {
             </button>
 
             {/* Main Lightbox Image */}
-            <div className="relative w-full max-w-5xl h-[65vh] sm:h-[75vh]">
+            <div className="relative w-full max-w-5xl h-[65vh] sm:h-[75vh] rounded-2xl overflow-hidden shadow-2xl border border-sand/20">
               <Image
                 src={filteredItems[lightboxIndex].src}
                 alt={filteredItems[lightboxIndex].title}
                 fill
                 sizes="(max-width: 1280px) 100vw, 1200px"
-                className="object-contain"
+                className="object-contain rounded-2xl"
               />
             </div>
 
@@ -253,7 +253,7 @@ export default function GalleryPage() {
                   prev === null ? null : (prev + 1) % filteredItems.length
                 );
               }}
-              className="absolute right-2 sm:right-4 z-20 p-3 rounded-full bg-forest-dark/70 hover:bg-forest text-cream border border-sand/30 transition-all hover:scale-110"
+              className="absolute right-2 sm:right-4 z-20 p-3 rounded-full bg-forest-dark/70 hover:bg-forest text-cream border border-sand/30 transition-all hover:scale-110 shadow-lg"
             >
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -262,11 +262,11 @@ export default function GalleryPage() {
           </div>
 
           {/* Bottom Caption Bar */}
-          <div className="text-center max-w-2xl mx-auto z-20">
+          <div className="text-center max-w-2xl mx-auto z-20 bg-forest-dark/70 px-6 py-3 rounded-xl border border-sand/20 backdrop-blur-sm">
             <h4 className="font-display text-xl sm:text-2xl text-cream">
               {filteredItems[lightboxIndex].title}
             </h4>
-            <p className="mt-2 text-xs sm:text-sm text-sand-light/90 font-light">
+            <p className="mt-1 text-xs sm:text-sm text-sand-light/90 font-light">
               {filteredItems[lightboxIndex].caption}
             </p>
           </div>

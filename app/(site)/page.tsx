@@ -79,8 +79,8 @@ export default function HomePage() {
         {/* Hero Content */}
         <div className="relative flex-1 container-content flex flex-col justify-center pt-24 pb-20 z-10">
           <div className="max-w-4xl">
-            {/* Editorial Eyebrow Badge */}
-            <div className="inline-flex items-center gap-3 mb-6 bg-forest-deep/70 backdrop-blur-md px-4 py-2 border border-sand/35 shadow-sm">
+            {/* Editorial Eyebrow Badge with rounded-full */}
+            <div className="inline-flex items-center gap-3 mb-6 bg-forest-deep/70 backdrop-blur-md px-4 py-2 border border-sand/35 shadow-sm rounded-full">
               <span className="w-2 h-2 rounded-full bg-sand animate-pulse" />
               <p className="text-[11px] tracking-ultra uppercase text-sand-light font-medium">
                 Western Ghats Foothills • Coimbatore, Tamil Nadu
@@ -97,11 +97,11 @@ export default function HomePage() {
               Experience discreet luxury, Ayurvedic wellness, and uncompromised privacy in a secluded sanctuary built into the forest canopy.
             </p>
 
-            {/* Action Buttons */}
+            {/* Action Buttons with rounded-lg */}
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <Link
                 href="/book"
-                className="group inline-flex items-center gap-3 px-8 py-4 bg-sand text-forest-deep text-xs tracking-luxury uppercase font-medium hover:bg-sand-light transition-all duration-300 shadow-luxury hover:shadow-xl"
+                className="group inline-flex items-center gap-3 px-8 py-4 bg-sand text-forest-deep text-xs tracking-luxury uppercase font-medium hover:bg-sand-light transition-all duration-300 shadow-luxury hover:shadow-xl rounded-lg"
               >
                 <span>Check Availability</span>
                 <svg
@@ -115,7 +115,7 @@ export default function HomePage() {
               </Link>
               <Link
                 href="/stay"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-cream/10 hover:bg-cream/20 backdrop-blur-sm border border-cream/40 text-cream text-xs tracking-luxury uppercase font-medium transition-all duration-300"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-cream/10 hover:bg-cream/20 backdrop-blur-sm border border-cream/40 text-cream text-xs tracking-luxury uppercase font-medium transition-all duration-300 rounded-lg"
               >
                 <span>Explore Residences</span>
               </Link>
@@ -137,21 +137,21 @@ export default function HomePage() {
       {/* Sanctuary Overview Section */}
       <section className="container-content pt-28 md:pt-36 pb-24 border-b border-sand/20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Visual Image Showcase with Gold Framing */}
+          {/* Visual Image Showcase with Gold Framing and rounded-2xl */}
           <div className="lg:col-span-6 relative order-2 lg:order-1">
-            <div className="relative aspect-[4/5] overflow-hidden shadow-luxury-lg border border-sand/30">
+            <div className="relative aspect-[4/5] overflow-hidden shadow-luxury-lg border border-sand/30 rounded-2xl">
               <Image
                 src={images.intro.mistMountains}
                 alt="Misty forested ridgelines of the Western Ghats near Deccan Resort"
                 fill
                 sizes="(min-width: 1024px) 50vw, 100vw"
-                className="object-cover transition-transform duration-700 hover:scale-105"
+                className="object-cover transition-transform duration-700 hover:scale-105 rounded-2xl"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/50 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/50 via-transparent to-transparent rounded-2xl" />
             </div>
 
-            {/* Floating Editorial Badge */}
-            <div className="absolute -bottom-6 -right-6 sm:bottom-6 sm:-right-8 bg-forest text-cream p-5 sm:p-6 shadow-luxury-float max-w-[240px] border border-sand/30 hidden sm:block">
+            {/* Floating Editorial Badge with rounded-xl */}
+            <div className="absolute -bottom-6 -right-6 sm:bottom-6 sm:-right-8 bg-forest text-cream p-5 sm:p-6 shadow-luxury-float max-w-[240px] border border-sand/30 hidden sm:block rounded-xl">
               <span className="text-[10px] tracking-ultra uppercase text-sand-light font-medium block">
                 Sanctuary Setting
               </span>
@@ -174,8 +174,8 @@ export default function HomePage() {
               Every stay is built around three pillars: seclusion, restorative wellness, and intimate proximity to the shola forest itself. There is no rigid itinerary here — only an environment tailored to slow down and reconnect.
             </p>
 
-            {/* Qualitative Pillars Bar */}
-            <div className="mt-10 grid grid-cols-3 gap-6 py-6 border-y border-sand/20">
+            {/* Qualitative Pillars Bar with rounded-xl */}
+            <div className="mt-10 grid grid-cols-3 gap-6 py-6 px-4 border border-sand/20 rounded-xl bg-sand/5">
               <div>
                 <span className="font-display text-2xl sm:text-3xl text-forest block">3</span>
                 <p className="text-xs text-charcoal/65 mt-1 tracking-wide">Private Residences</p>
@@ -263,16 +263,16 @@ export default function HomePage() {
             description="The resort borders an undisturbed forest belt in the Western Ghats — an ancient landscape characterized by rolling morning mist, endemic flora, and gentle valley breezes that sweep through the canopy at dawn."
           />
 
-          <div className="mt-12 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs tracking-luxury uppercase text-sand-light font-medium">
-            <span className="flex items-center gap-2">
+          <div className="mt-12 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs tracking-luxury uppercase text-sand-light font-medium">
+            <span className="flex items-center gap-2 bg-forest-deep/70 px-4 py-2 rounded-full border border-sand/30 backdrop-blur-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-sand" />
               Mountain Solitude
             </span>
-            <span className="flex items-center gap-2">
+            <span className="flex items-center gap-2 bg-forest-deep/70 px-4 py-2 rounded-full border border-sand/30 backdrop-blur-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-sand" />
               Native Canopy Flora
             </span>
-            <span className="flex items-center gap-2">
+            <span className="flex items-center gap-2 bg-forest-deep/70 px-4 py-2 rounded-full border border-sand/30 backdrop-blur-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-sand" />
               Valley Light &amp; Mist
             </span>
@@ -308,9 +308,9 @@ export default function HomePage() {
           {experiences.map((exp) => (
             <div
               key={exp.title}
-              className="group bg-cream border border-sand/25 hover:border-sand/60 transition-all duration-500 hover:shadow-luxury-lg overflow-hidden flex flex-col"
+              className="group bg-cream border border-sand/25 hover:border-sand/60 transition-all duration-500 hover:shadow-luxury-lg overflow-hidden flex flex-col rounded-2xl"
             >
-              <div className="relative aspect-[4/3] overflow-hidden bg-forest-dark">
+              <div className="relative aspect-[4/3] overflow-hidden bg-forest-dark rounded-t-2xl">
                 <Image
                   src={exp.image}
                   alt={exp.title}
@@ -320,12 +320,12 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/60 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity" />
 
-                <span className="absolute top-4 right-4 bg-forest-deep/85 backdrop-blur-md text-sand-light text-[11px] font-medium px-3 py-1 border border-sand/30 tracking-wider">
+                <span className="absolute top-4 right-4 bg-forest-deep/85 backdrop-blur-md text-sand-light text-[11px] font-medium px-3.5 py-1 border border-sand/30 tracking-wider rounded-full">
                   {exp.duration}
                 </span>
               </div>
 
-              <div className="p-7 flex flex-col flex-1 justify-between">
+              <div className="p-7 flex flex-col flex-1 justify-between rounded-b-2xl">
                 <div>
                   <span className="text-[10px] tracking-ultra uppercase text-sand-dark font-medium block mb-1">
                     {exp.subtitle}
@@ -360,7 +360,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Editorial Chapter: The Rhythm of Sanctuary (Replacing Fake Testimonials) */}
+      {/* Editorial Chapter: The Rhythm of Sanctuary with rounded-2xl cards */}
       <section className="bg-forest-deep py-28 md:py-36 text-cream border-b border-sand/20">
         <div className="container-content">
           <SectionHeading
@@ -375,7 +375,7 @@ export default function HomePage() {
             {sanctuaryRhythms.map((r) => (
               <div
                 key={r.period}
-                className="glass-forest p-8 sm:p-10 border border-sand/25 flex flex-col justify-between"
+                className="glass-forest p-8 sm:p-10 border border-sand/25 flex flex-col justify-between rounded-2xl"
               >
                 <div>
                   <span className="text-xs tracking-ultra uppercase text-sand-light font-medium block mb-3">
@@ -398,7 +398,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Visual Gallery Preview */}
+      {/* Visual Gallery Preview with rounded-xl */}
       <section className="container-content py-24 md:py-32 border-b border-sand/20">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
           <SectionHeading
@@ -427,7 +427,7 @@ export default function HomePage() {
             <Link
               key={src}
               href="/gallery"
-              className={`group relative overflow-hidden bg-forest-dark border border-sand/20 ${
+              className={`group relative overflow-hidden bg-forest-dark border border-sand/20 rounded-xl ${
                 i === 0 ? "col-span-2 row-span-2 aspect-square" : "aspect-square"
               }`}
             >
@@ -436,17 +436,17 @@ export default function HomePage() {
                 alt="Deccan Resort property visual"
                 fill
                 sizes={i === 0 ? "(min-width: 768px) 50vw, 100vw" : "(min-width: 768px) 25vw, 50vw"}
-                className="object-cover transition-transform duration-700 ease-elegant group-hover:scale-105"
+                className="object-cover transition-transform duration-700 ease-elegant group-hover:scale-105 rounded-xl"
               />
-              <div className="absolute inset-0 bg-forest-deep/20 group-hover:bg-forest-deep/0 transition-colors duration-500" />
+              <div className="absolute inset-0 bg-forest-deep/20 group-hover:bg-forest-deep/0 transition-colors duration-500 rounded-xl" />
             </Link>
           ))}
         </div>
       </section>
 
-      {/* Final Editorial Invitation */}
+      {/* Final Editorial Invitation with rounded-2xl */}
       <section className="container-content py-28 md:py-36 text-center">
-        <div className="max-w-3xl mx-auto bg-mist/50 p-10 sm:p-16 border border-sand/35 shadow-luxury-md">
+        <div className="max-w-3xl mx-auto bg-mist/50 p-10 sm:p-16 border border-sand/35 shadow-luxury-md rounded-2xl">
           <span className="text-[10px] tracking-ultra uppercase text-sand-dark font-medium block mb-3">
             Reservations
           </span>
@@ -459,7 +459,7 @@ export default function HomePage() {
           <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/book"
-              className="inline-flex items-center gap-3 px-9 py-4 bg-forest text-cream text-xs tracking-luxury uppercase font-medium hover:bg-forest-dark transition-all duration-300 shadow-md hover:shadow-xl"
+              className="inline-flex items-center gap-3 px-9 py-4 bg-forest text-cream text-xs tracking-luxury uppercase font-medium hover:bg-forest-dark transition-all duration-300 shadow-md hover:shadow-xl rounded-lg"
             >
               <span>Check Availability</span>
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -468,7 +468,7 @@ export default function HomePage() {
             </Link>
             <Link
               href="/stay"
-              className="inline-flex items-center gap-2 px-9 py-4 border border-sand/60 text-forest text-xs tracking-luxury uppercase font-medium hover:bg-sand/15 transition-colors"
+              className="inline-flex items-center gap-2 px-9 py-4 border border-sand/60 text-forest text-xs tracking-luxury uppercase font-medium hover:bg-sand/15 transition-colors rounded-lg"
             >
               <span>Compare Suites</span>
             </Link>

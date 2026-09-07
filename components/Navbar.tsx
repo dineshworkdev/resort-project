@@ -47,8 +47,9 @@ export default function Navbar() {
       }`}
     >
       <div className="container-content flex items-center justify-between h-20">
+        {/* Header Wordmark: DR monogram + DECCAN RESORT hotel wordmark */}
         <Logo
-          variant="responsive"
+          variant="wordmark"
           theme={isTransparentOverHero ? "light" : "dark"}
           priority
         />
@@ -86,11 +87,11 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* Desktop CTA Button */}
+        {/* Desktop CTA Button with refined rounded corners */}
         <div className="hidden lg:flex items-center gap-4">
           <Link
             href="/book"
-            className={`group inline-flex items-center gap-2.5 px-6 py-2.5 text-xs tracking-luxury uppercase font-medium transition-all duration-300 border ${
+            className={`group inline-flex items-center gap-2.5 px-6 py-2.5 text-xs tracking-luxury uppercase font-medium transition-all duration-300 border rounded-lg ${
               isTransparentOverHero
                 ? "bg-sand text-forest-deep border-sand hover:bg-sand-light hover:border-sand-light shadow-md hover:shadow-lg"
                 : "bg-forest text-cream border-forest hover:bg-forest-dark hover:border-forest-dark shadow-sm hover:shadow-md"
@@ -113,12 +114,12 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Mobile menu toggle */}
+        {/* Mobile menu toggle button with rounded corners */}
         <button
           aria-label={open ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="lg:hidden relative w-11 h-11 flex flex-col items-center justify-center gap-1.5 focus:outline-none"
+          className="lg:hidden relative w-11 h-11 flex flex-col items-center justify-center gap-1.5 focus:outline-none rounded-lg"
         >
           <span
             className={`block h-0.5 w-6 transition-all duration-300 ${
@@ -143,7 +144,7 @@ export default function Navbar() {
         <div className="lg:hidden fixed inset-x-0 top-20 bottom-0 bg-cream/98 backdrop-blur-xl border-t border-sand/20 z-40 overflow-y-auto flex flex-col justify-between py-8 px-6 animate-fade-in">
           <div>
             <div className="mb-6 pb-4 border-b border-sand/15">
-              <Logo variant="mark-text" theme="dark" />
+              <Logo variant="wordmark" theme="dark" />
             </div>
 
             <nav className="flex flex-col space-y-1">
@@ -167,7 +168,7 @@ export default function Navbar() {
           </div>
 
           <div className="mt-8 pt-6 border-t border-sand/20 flex flex-col gap-4">
-            <div>
+            <div className="p-4 bg-sand/10 rounded-xl border border-sand/20">
               <p className="text-[10px] tracking-ultra uppercase text-sand-dark font-medium">
                 Sanctuary Location
               </p>
@@ -180,7 +181,7 @@ export default function Navbar() {
             <Link
               href="/book"
               onClick={() => setOpen(false)}
-              className="w-full inline-flex items-center justify-center gap-2 py-4 bg-forest text-cream text-xs tracking-luxury uppercase font-medium hover:bg-forest-dark transition-colors shadow-md"
+              className="w-full inline-flex items-center justify-center gap-2 py-4 bg-forest text-cream text-xs tracking-luxury uppercase font-medium hover:bg-forest-dark transition-colors shadow-md rounded-lg"
             >
               <span>Check Availability</span>
               <svg
