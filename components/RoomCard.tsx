@@ -1,0 +1,94 @@
+import Image from "next/image";
+import Link from "next/link";
+import { Room } from "@/lib/types";
+
+export default function RoomCard({ room }: { room: Room }) {
+  return (
+    <Link
+      href={`/stay/${room.slug}`}
+      className="group block bg-cream border border-sand/20 hover:border-sand/50 transition-all duration-500 hover:shadow-luxury-lg overflow-hidden flex flex-col h-full"
+      aria-label={`View details for ${room.name}`}
+    >
+      {/* Image Showcase */}
+      <div className="relative aspect-[4/3] sm:aspect-[16/11] overflow-hidden bg-forest-dark">
+        <Image
+          src={room.image}
+          alt={`${room.name} at Deccan Resort`}
+          fill
+          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+          className="object-cover transition-transform duration-700 ease-elegant group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/60 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
+        
+        {/* Status / Category badge */}
+        <div className="absolute top-4 left-4 flex flex-col gap-1.5 items-start">
+          {room.status === "Limited" && (
+            <span className="inline-flex items-center gap-1.5 bg-cream/95 backdrop-blur-sm text-forest text-[10px] tracking-luxury uppercase font-semibold px-3 py-1 shadow-sm border border-sand/20">
+              <span className="w-1.5 h-1.5 rounded-full bg-sand-dark animate-pulse" />
+              Limited Availability
+            </span>
+          )}
+          {room.id === "royal-suite" && (
+            <span className="inline-flex items-center bg-sand text-forest-deep text-[10px] tracking-luxury uppercase font-semibold px-3 py-1 shadow-sm">
+              Flagship Residence
+            </span>
+          )}
+        </div>
+
+        {/* Floating Room Size Tag */}
+        <div className="absolute bottom-3 right-3 bg-forest-deep/80 backdrop-blur-md text-cream text-[11px] font-medium px-2.5 py-1 tracking-wider border border-sand/20">
+          {room.size}
+        </div>
+      </div>
+
+      {/* Card Content */}
+      <div className="p-6 sm:p-7 flex flex-col flex-1 justify-between bg-cream">
+        <div>
+          {/* Key Specs Pills */}
+          <div className="flex flex-wrap items-center gap-2 text-xs text-charcoal/60 mb-3">
+            <span className="flex items-center gap-1">
+              <svg className="w-3.5 h-3.5 text-sand-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+              {room.occupancy} Guests
+            </span>
+            <span className="text-sand/40">•</span>
+            <span>{room.bedType}</span>
+          </div>
+
+          <h3 className="font-display text-2xl text-forest group-hover:text-sand-dark transition-colors duration-300">
+            {room.name}
+          </h3>
+          <p className="mt-2 text-sm text-charcoal/70 leading-relaxed line-clamp-2">
+            {room.tagline}
+          </p>
+        </div>
+
+        {/* Price & Action Row */}
+        <div className="mt-6 pt-5 border-t border-sand/20 flex items-end justify-between">
+          <div>
+            <span className="text-[10px] tracking-ultra uppercase text-sand-dark block">Starting from</span>
+            <div className="flex items-baseline gap-1 mt-0.5">
+              <span className="font-display text-2xl text-forest">
+                ₹{room.pricePerNight.toLocaleString("en-IN")}
+              </span>
+              <span className="text-xs text-charcoal/55 font-body">/ night</span>
+            </div>
+          </div>
+
+          <span className="inline-flex items-center gap-1.5 text-xs tracking-luxury uppercase text-forest font-medium group-hover:text-sand-dark transition-colors">
+            <span>Explore</span>
+            <svg
+              className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </span>
+        </div>
+      </div>
+    </Link>
+  );
+}
