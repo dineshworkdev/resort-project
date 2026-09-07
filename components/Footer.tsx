@@ -1,9 +1,20 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import Logo from "./Logo";
 
 export default function Footer() {
+  const [subscribed, setSubscribed] = useState(false);
+  const [email, setEmail] = useState("");
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email) {
+      setSubscribed(true);
+    }
+  };
+
   return (
     <footer className="bg-forest-deep text-cream border-t border-sand/20">
       {/* Top Newsletter / Invitation Bar */}
@@ -18,26 +29,31 @@ export default function Footer() {
             </h3>
           </div>
 
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              alert("Thank you for subscribing to Deccan Resort updates.");
-            }}
-            className="flex flex-col sm:flex-row gap-3 max-w-md w-full"
-          >
-            <input
-              type="email"
-              placeholder="Enter your email address"
-              required
-              className="px-4 py-3.5 bg-forest-dark/70 border border-sand/30 text-cream placeholder:text-cream/40 text-sm focus:outline-none focus:border-sand flex-1"
-            />
-            <button
-              type="submit"
-              className="px-7 py-3.5 bg-sand text-forest-deep text-xs tracking-luxury uppercase font-medium hover:bg-sand-light transition-colors shrink-0"
+          {subscribed ? (
+            <div className="bg-sand/15 border border-sand/30 px-6 py-4 text-sm text-sand-light">
+              Thank you for subscribing to Deccan Resort dispatches. We look forward to sharing our seasons with you.
+            </div>
+          ) : (
+            <form
+              onSubmit={handleSubscribe}
+              className="flex flex-col sm:flex-row gap-3 max-w-md w-full"
             >
-              Subscribe
-            </button>
-          </form>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email address"
+                required
+                className="px-4 py-3.5 bg-forest-dark/70 border border-sand/30 text-cream placeholder:text-cream/40 text-sm focus:outline-none focus:border-sand flex-1"
+              />
+              <button
+                type="submit"
+                className="px-7 py-3.5 bg-sand text-forest-deep text-xs tracking-luxury uppercase font-medium hover:bg-sand-light transition-colors shrink-0"
+              >
+                Subscribe
+              </button>
+            </form>
+          )}
         </div>
       </div>
 
@@ -47,18 +63,20 @@ export default function Footer() {
           
           {/* Brand & Overview */}
           <div className="lg:col-span-2">
-            <Logo variant="light" />
+            <div className="max-w-xs">
+              <Logo variant="full" theme="light" />
+            </div>
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-cream/70 font-light">
-              A private luxury nature sanctuary perched within the forested foothills of the Western Ghats, 
+              A private luxury nature sanctuary nestled within the forested foothills of the Western Ghats, 
               crafted around slow living, Ayurvedic restoration, and undisturbed wilderness.
             </p>
 
-            <div className="mt-6 inline-flex items-center gap-3 text-xs text-sand-light/80">
+            <div className="mt-6 inline-flex flex-wrap items-center gap-3 text-xs text-sand-light/80">
               <span>Coimbatore, Tamil Nadu</span>
               <span>•</span>
-              <span>Elev. 1,200m</span>
+              <span>Western Ghats Foothills</span>
               <span>•</span>
-              <span>Shola Buffer Zone</span>
+              <span>Shola Buffer Belt</span>
             </div>
           </div>
 
@@ -68,7 +86,7 @@ export default function Footer() {
             <ul className="space-y-3.5 text-sm">
               <li>
                 <Link href="/stay" className="text-cream/75 hover:text-sand-light transition-colors">
-                  Rooms &amp; Villas
+                  Residences &amp; Villas
                 </Link>
               </li>
               <li>

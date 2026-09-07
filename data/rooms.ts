@@ -8,9 +8,9 @@ export const rooms: Room[] = [
     name: "Estate Room",
     tagline: "Garden-facing comfort for two",
     description:
-      "Plush comfort overlooking our organic gardens. Perfect for couples.",
+      "Plush comfort overlooking estate flora and mountain trees. Ideal for couples seeking restorative quiet.",
     longDescription:
-      "The Estate Room sits along the resort's western wing, framed by organic vegetable gardens and a line of native shola trees. Interiors favour warm timber, handwoven textiles and soft, indirect lighting, with a reading nook positioned to catch the early mountain light. It's an ideal base for guests who want quiet comfort within easy reach of the dining terrace and spa.",
+      "The Estate Room sits along the resort's western wing, framed by kitchen herb gardens and a quiet line of native shola trees. Interiors favour warm timber, handwoven textiles and soft, indirect lighting, with a reading nook positioned to catch the early mountain light. It's an ideal base for guests who want quiet comfort within easy reach of the dining terrace and spa.",
     pricePerNight: 8500,
     image: images.rooms.estateRoom,
     gallery: images.rooms.estateRoomGallery,
@@ -18,8 +18,8 @@ export const rooms: Room[] = [
     bedType: "1 King Bed",
     size: "420 sq. ft.",
     amenities: [
-      "Garden view",
-      "Private sit-out",
+      "Garden & canopy view",
+      "Private sit-out veranda",
       "Rainfall shower",
       "Organic cotton linen",
       "In-room fireplace",
@@ -58,9 +58,9 @@ export const rooms: Room[] = [
     name: "Deccan Royal Suite",
     tagline: "Our flagship, above the valley",
     description:
-      "Our flagship experience. Panoramic valley views, private pool, and 24/7 butler service.",
+      "Our flagship experience. Panoramic valley views, private heated plunge pool, and dedicated suite host.",
     longDescription:
-      "The Deccan Royal Suite occupies the highest point on the property, with an uninterrupted view across the valley toward the Western Ghats. A private plunge pool, a separate living pavilion and a dedicated butler are reserved exclusively for this suite, making it the resort's most complete expression of privacy and scale.",
+      "The Deccan Royal Suite occupies the highest point on the property, with an uninterrupted view across the valley toward the Western Ghats ridgeline. An exclusive plunge pool, a separate living pavilion and a dedicated suite host are reserved exclusively for this suite, making it the resort's most complete expression of privacy and scale.",
     pricePerNight: 25000,
     image: images.rooms.royalSuite,
     gallery: images.rooms.royalSuiteGallery,
@@ -69,8 +69,8 @@ export const rooms: Room[] = [
     size: "1,150 sq. ft.",
     amenities: [
       "Panoramic valley views",
-      "Private plunge pool",
-      "24/7 dedicated butler",
+      "Private heated plunge pool",
+      "Dedicated suite host",
       "Separate living pavilion",
       "In-suite dining",
       "Priority spa scheduling",

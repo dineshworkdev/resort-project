@@ -1,14 +1,19 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
 export default function AvailabilityBar() {
   const router = useRouter();
+  
+  // Format today's date for minimum input constraint
+  const todayStr = useMemo(() => {
+    return new Date().toISOString().split("T")[0];
+  }, []);
+
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
   const [guestsCount, setGuestsCount] = useState("2");
-  const [activeTab, setActiveTab] = useState<"standard" | "villa">("standard");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,14 +28,14 @@ export default function AvailabilityBar() {
     <div className="w-full">
       <form
         onSubmit={handleSubmit}
-        className="glass-card shadow-luxury-float p-4 sm:p-6 lg:p-7 border border-sand/30 transition-all duration-300"
+        className="glass-card shadow-luxury-float p-4 sm:p-6 lg:p-7 border border-sand/35 transition-all duration-300"
       >
         <div className="flex flex-col lg:flex-row items-stretch lg:items-center gap-4 lg:gap-0 divide-y lg:divide-y-0 lg:divide-x divide-sand/20">
           
           {/* Check-In */}
-          <div className="flex-1 px-3 sm:px-4 py-2 lg:py-0 group cursor-pointer">
+          <div className="flex-1 px-3 sm:px-4 py-2 lg:py-0 group">
             <div className="flex items-center gap-2 mb-1.5">
-              <svg className="w-4 h-4 text-sand-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-4 h-4 text-sand-dark shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
               <label htmlFor="checkIn" className="text-[10px] tracking-ultra uppercase text-sand-dark font-medium cursor-pointer">
@@ -40,17 +45,23 @@ export default function AvailabilityBar() {
             <input
               id="checkIn"
               type="date"
+              min={todayStr}
               value={checkIn}
-              onChange={(e) => setCheckIn(e.target.value)}
+              onChange={(e) => {
+                setCheckIn(e.target.value);
+                if (checkOut && e.target.value >= checkOut) {
+                  setCheckOut("");
+                }
+              }}
               required
               className="w-full bg-transparent text-sm md:text-base font-display text-forest font-medium focus:outline-none cursor-pointer"
             />
           </div>
 
           {/* Check-Out */}
-          <div className="flex-1 px-3 sm:px-4 pt-3 lg:pt-0 pb-2 lg:pb-0 group cursor-pointer">
+          <div className="flex-1 px-3 sm:px-4 pt-3 lg:pt-0 pb-2 lg:pb-0 group">
             <div className="flex items-center gap-2 mb-1.5">
-              <svg className="w-4 h-4 text-sand-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-4 h-4 text-sand-dark shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
               <label htmlFor="checkOut" className="text-[10px] tracking-ultra uppercase text-sand-dark font-medium cursor-pointer">
@@ -60,6 +71,7 @@ export default function AvailabilityBar() {
             <input
               id="checkOut"
               type="date"
+              min={checkIn || todayStr}
               value={checkOut}
               onChange={(e) => setCheckOut(e.target.value)}
               required
@@ -68,13 +80,13 @@ export default function AvailabilityBar() {
           </div>
 
           {/* Guests */}
-          <div className="flex-1 px-3 sm:px-4 pt-3 lg:pt-0 pb-2 lg:pb-0 group cursor-pointer">
+          <div className="flex-1 px-3 sm:px-4 pt-3 lg:pt-0 pb-2 lg:pb-0 group">
             <div className="flex items-center gap-2 mb-1.5">
-              <svg className="w-4 h-4 text-sand-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-4 h-4 text-sand-dark shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
               <label htmlFor="guests" className="text-[10px] tracking-ultra uppercase text-sand-dark font-medium cursor-pointer">
-                Guests
+                Party Size
               </label>
             </div>
             <select
@@ -110,20 +122,20 @@ export default function AvailabilityBar() {
           </div>
         </div>
 
-        {/* Reassurance Micro-banner */}
+        {/* Direct Booking Reassurance Micro-banner */}
         <div className="mt-4 pt-3 border-t border-sand/15 hidden sm:flex items-center justify-between text-[11px] text-charcoal/65">
           <div className="flex items-center gap-5">
             <span className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-sand-dark" />
-              Best Rate Guarantee
+              Direct Rate Guarantee
             </span>
             <span className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-sand-dark" />
-              Complimentary Organic Breakfast
+              Estate Breakfast Included
             </span>
             <span className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-sand-dark" />
-              Complimentary Tea Ritual
+              Sunset Tea Gathering
             </span>
           </div>
           <span className="text-sand-dark font-medium hidden md:inline">

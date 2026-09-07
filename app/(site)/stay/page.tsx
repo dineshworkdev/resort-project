@@ -13,13 +13,13 @@ export const metadata: Metadata = {
 };
 
 const comparisonFeatures = [
-  { feature: "View Orientation", estate: "Shola Forest & Gardens", villa: "Valley & Private Forest", suite: "Panoramic Valley Ridgeline" },
+  { feature: "View Orientation", estate: "Forest & Herb Gardens", villa: "Valley & Private Forest", suite: "Panoramic Valley Ridgeline" },
   { feature: "Floor Plan Size", estate: "420 sq. ft.", villa: "640 sq. ft.", suite: "1,150 sq. ft." },
   { feature: "Maximum Occupancy", estate: "2 Guests", villa: "3 Guests", suite: "4 Guests" },
-  { feature: "Bed Configuration", estate: "1 King Bed", estateNote: "", villa: "1 King + Daybed", suite: "1 King + 1 Queen Bed" },
+  { feature: "Bed Configuration", estate: "1 King Bed", villa: "1 King + Daybed", suite: "1 King + 1 Queen Bed" },
   { feature: "Private Outdoor Space", estate: "Private Sit-Out Veranda", villa: "Expansive Valley Balcony", suite: "Wrap-Around Pavilion Deck" },
-  { feature: "Private Plunge Pool", estate: "Shared Infinity Pool", villa: "Shared Infinity Pool", suite: "Exclusive Heated Plunge Pool" },
-  { feature: "Butler Service", estate: "On Request", villa: "Dedicated Villa Host", suite: "24/7 Private Butler" },
+  { feature: "Plunge Pool", estate: "Shared Valley Infinity Pool", villa: "Shared Valley Infinity Pool", suite: "Exclusive Heated Plunge Pool" },
+  { feature: "Dedicated Host Service", estate: "Concierge Host", villa: "Dedicated Villa Host", suite: "Dedicated Suite Host" },
   { feature: "In-Room Fireplace", estate: "Included", villa: "Included", suite: "Double Fireplace (Living & Bedroom)" },
   { feature: "Complimentary Breakfast", estate: "Included", villa: "Included", suite: "In-Suite Gourmet Breakfast" },
 ];
@@ -28,18 +28,19 @@ export default function StayPage() {
   return (
     <>
       {/* Editorial Header Banner */}
-      <section className="relative min-h-[480px] h-[58vh] w-full overflow-hidden mt-20 flex flex-col justify-end">
+      <section className="relative min-h-[500px] h-[60vh] w-full overflow-hidden mt-20 flex flex-col justify-end">
         <Image
           src={images.rooms.royalSuite}
           alt="Luxury living pavilion at Deccan Resort overlooking the Western Ghats"
           fill
+          priority
           sizes="100vw"
           className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-forest-deep via-forest-deep/60 to-forest-deep/30" />
-        
+
         <div className="relative container-content pb-16 z-10 max-w-4xl">
-          <div className="inline-flex items-center gap-2.5 mb-4 bg-forest-deep/60 backdrop-blur-md px-3.5 py-1 border border-sand/30">
+          <div className="inline-flex items-center gap-2.5 mb-4 bg-forest-deep/70 backdrop-blur-md px-3.5 py-1.5 border border-sand/30">
             <span className="w-1.5 h-1.5 rounded-full bg-sand" />
             <p className="text-[10px] tracking-ultra uppercase text-sand-light font-medium">
               Accommodations &amp; Villas
@@ -50,7 +51,7 @@ export default function StayPage() {
             Three distinct expressions of <span className="italic font-normal text-sand-light">solitude</span>
           </h1>
           <p className="mt-5 text-cream/85 text-base sm:text-lg max-w-2xl font-light leading-relaxed">
-            Every category is built around a different degree of privacy and scale, from a tranquil garden-facing room to an expansive royal suite with its own private plunge pool and dedicated butler.
+            Every category is built around a different degree of privacy and scale, from a tranquil garden-facing room to an expansive royal suite with its own private heated plunge pool and dedicated host.
           </p>
         </div>
       </section>
@@ -62,19 +63,19 @@ export default function StayPage() {
             <svg className="w-4 h-4 text-sand-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M5 13l4 4L19 7" />
             </svg>
-            Best Rate Guaranteed
+            Direct Rate Guaranteed
           </span>
           <span className="flex items-center gap-2">
             <svg className="w-4 h-4 text-sand-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M5 13l4 4L19 7" />
             </svg>
-            Daily Organic Breakfast Included
+            Daily Estate Breakfast
           </span>
           <span className="flex items-center gap-2">
             <svg className="w-4 h-4 text-sand-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M5 13l4 4L19 7" />
             </svg>
-            Guided Shola Birdlife Walk
+            Guided Morning Shola Walk
           </span>
           <span className="flex items-center gap-2">
             <svg className="w-4 h-4 text-sand-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -93,7 +94,7 @@ export default function StayPage() {
           description="Crafted with native Western Ghats stone, warm hand-planed timbers, and floor-to-ceiling glass that dissolves the boundary between indoors and the shola canopy."
         />
 
-        <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
           {rooms.map((room) => (
             <RoomCard key={room.id} room={room} />
           ))}

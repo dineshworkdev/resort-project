@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 import { rooms } from "@/data/rooms";
 import { Room } from "@/lib/types";
+import Logo from "./Logo";
 
 type Step = "dates" | "room" | "details" | "review" | "payment" | "confirmation";
 
@@ -28,12 +29,15 @@ function nightsBetween(checkIn: string, checkOut: string) {
 export default function BookingFlow() {
   const searchParams = useSearchParams();
 
+  const todayStr = useMemo(() => new Date().toISOString().split("T")[0], []);
+
   const [step, setStep] = useState<Step>("dates");
+  const [isVerifying, setIsVerifying] = useState(false);
+
   const [checkIn, setCheckIn] = useState(searchParams.get("checkIn") ?? "");
   const [checkOut, setCheckOut] = useState(searchParams.get("checkOut") ?? "");
-  const [guestsCount, setGuestsCount] = useState(
-    searchParams.get("guests") ?? "2"
-  );
+  const [guestsCount, setGuestsCount] = useState(searchParams.get("guests") ?? "2");
+  
   const [selectedRoom, setSelectedRoom] = useState<Room | null>(() => {
     const roomId = searchParams.get("room");
     return rooms.find((r) => r.id === roomId) ?? rooms[0];
@@ -52,10 +56,7 @@ export default function BookingFlow() {
   const [confirmationId, setConfirmationId] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const nights = useMemo(
-    () => nightsBetween(checkIn, checkOut),
-    [checkIn, checkOut]
-  );
+  const nights = useMemo(() => nightsBetween(checkIn, checkOut), [checkIn, checkOut]);
   const effectiveNights = Math.max(nights, 1);
   const roomRate = selectedRoom ? selectedRoom.pricePerNight : 0;
   const roomSubtotal = roomRate * effectiveNights;
@@ -66,10 +67,10 @@ export default function BookingFlow() {
 
   function validateDates() {
     const next: Record<string, string> = {};
-    if (!checkIn) next.checkIn = "Select a check-in date.";
-    if (!checkOut) next.checkOut = "Select a check-out date.";
+    if (!checkIn) next.checkIn = "Select an arrival date.";
+    if (!checkOut) next.checkOut = "Select a departure date.";
     if (checkIn && checkOut && nightsBetween(checkIn, checkOut) <= 0) {
-      next.checkOut = "Check-out date must be after check-in.";
+      next.checkOut = "Departure date must follow arrival.";
     }
     setErrors(next);
     return Object.keys(next).length === 0;
@@ -79,18 +80,19 @@ export default function BookingFlow() {
     const next: Record<string, string> = {};
     if (!fullName.trim()) next.fullName = "Enter the primary guest's full name.";
     if (!/^\S+@\S+\.\S+$/.test(email)) next.email = "Enter a valid email address.";
-    if (!/^[+\d][\d\s-]{7,}$/.test(phone)) next.phone = "Enter a valid phone number.";
+    if (!/^[+\d][\d\s-]{7,}$/.test(phone)) next.phone = "Enter a valid mobile contact number.";
     setErrors(next);
     return Object.keys(next).length === 0;
   }
 
   function validatePayment() {
     const next: Record<string, string> = {};
-    if (!cardName.trim()) next.cardName = "Enter name on card.";
-    if (!/^\d{13,19}$/.test(cardNumber.replace(/\s/g, "")))
-      next.cardNumber = "Enter a valid card number.";
+    if (!cardName.trim()) next.cardName = "Enter name as written on card.";
+    if (!/^\d{13,19}$/.test(cardNumber.replace(/\s/g, ""))) {
+      next.cardNumber = "Enter a valid 16-digit card number.";
+    }
     if (!/^\d{2}\/\d{2}$/.test(cardExpiry)) next.cardExpiry = "Use MM/YY format.";
-    if (!/^\d{3,4}$/.test(cardCvc)) next.cardCvc = "Enter valid CVC.";
+    if (!/^\d{3,4}$/.test(cardCvc)) next.cardCvc = "Enter valid 3-4 digit CVC.";
     setErrors(next);
     return Object.keys(next).length === 0;
   }
@@ -98,19 +100,33 @@ export default function BookingFlow() {
   function goTo(next: Step) {
     setErrors({});
     setStep(next);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }
+
+  function handleCheckDatesAndProceed() {
+    if (!validateDates()) return;
+    setIsVerifying(true);
+    setTimeout(() => {
+      setIsVerifying(false);
+      goTo("room");
+    }, 450);
   }
 
   function handleConfirmPayment() {
     if (!validatePayment()) return;
-    const id = `DR-${Math.floor(10000 + Math.random() * 89999)}`;
-    setConfirmationId(id);
-    goTo("confirmation");
+    setIsVerifying(true);
+    setTimeout(() => {
+      setIsVerifying(false);
+      const id = `DR-${Math.floor(10000 + Math.random() * 89999)}`;
+      setConfirmationId(id);
+      goTo("confirmation");
+    }, 600);
   }
 
   return (
     <div className="container-content pt-36 pb-28">
-      
       {/* Editorial Step Timeline */}
       {step !== "confirmation" && (
         <div className="mb-14 pb-8 border-b border-sand/20">
@@ -152,7 +168,7 @@ export default function BookingFlow() {
                           isCurrent
                             ? "bg-forest text-cream font-bold"
                             : isPassed
-                            ? "bg-sand text-forest-deep"
+                            ? "bg-sand text-forest-deep font-bold"
                             : "bg-sand/20 text-charcoal/40"
                         }`}
                       >
@@ -187,25 +203,25 @@ export default function BookingFlow() {
               We look forward to welcoming you
             </h1>
             <p className="mt-3 text-charcoal/70 text-base font-light">
-              Your stay at Deccan Resort is officially confirmed. A detailed reservation folio has been sent to{" "}
-              <span className="font-medium text-forest">{email}</span>.
+              Your stay at Deccan Resort is officially secured. A comprehensive reservation voucher and directions have been recorded for{" "}
+              <span className="font-medium text-forest">{email || "your email"}</span>.
             </p>
           </div>
 
           {/* Luxury Folio Voucher Card */}
-          <div className="bg-cream border border-sand/30 shadow-luxury-float overflow-hidden">
-            <div className="bg-forest-deep text-cream p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="bg-cream border border-sand/35 shadow-luxury-float overflow-hidden">
+            <div className="bg-forest-deep text-cream p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-6 border-b border-sand/30">
               <div>
+                <Logo variant="full" theme="light" />
+              </div>
+              <div className="sm:text-right">
                 <p className="text-[10px] tracking-ultra uppercase text-sand-light font-medium">
-                  Booking Reference ID
+                  Booking Reference
                 </p>
-                <p className="font-display text-3xl text-sand-light mt-1">
+                <p className="font-display text-2xl sm:text-3xl text-sand-light mt-0.5 tracking-wider">
                   {confirmationId}
                 </p>
-              </div>
-              <div className="text-right sm:text-right">
-                <p className="text-xs text-cream/70">Guest of Honor</p>
-                <p className="font-display text-xl text-cream">{fullName}</p>
+                <p className="text-xs text-cream/70 mt-1">Guest: {fullName || "Primary Guest"}</p>
               </div>
             </div>
 
@@ -219,37 +235,40 @@ export default function BookingFlow() {
                 <div>
                   <span className="text-xs text-charcoal/50 uppercase tracking-wider block">Dates</span>
                   <p className="font-display text-lg text-forest mt-1">
-                    {checkIn || "Upcoming"} — {checkOut || "Upcoming"}
+                    {checkIn || "Scheduled"} — {checkOut || "Scheduled"}
                   </p>
                   <p className="text-xs text-charcoal/60">{effectiveNights} Nights</p>
                 </div>
                 <div>
-                  <span className="text-xs text-charcoal/50 uppercase tracking-wider block">Party</span>
+                  <span className="text-xs text-charcoal/50 uppercase tracking-wider block">Party Size</span>
                   <p className="font-display text-lg text-forest mt-1">{guestsCount} Guests</p>
-                  <p className="text-xs text-charcoal/60">Adults &amp; Children</p>
+                  <p className="text-xs text-charcoal/60">Reserved Capacity</p>
                 </div>
               </div>
 
               {/* Price Row */}
               <div className="flex justify-between items-baseline pt-2">
-                <span className="text-sm font-medium text-charcoal/80">Total Guaranteed (inclusive of taxes)</span>
+                <span className="text-sm font-medium text-charcoal/80">
+                  Total Guaranteed (inclusive of all luxury taxes)
+                </span>
                 <span className="font-display text-3xl text-forest">₹{total.toLocaleString("en-IN")}</span>
               </div>
 
               {/* Inclusions */}
-              <div className="bg-mist/30 p-4 border border-sand/20 text-xs text-charcoal/70 space-y-1.5">
-                <p className="font-medium text-forest uppercase tracking-wider text-[10px]">
+              <div className="bg-mist/30 p-5 border border-sand/25 text-xs text-charcoal/70 space-y-2">
+                <p className="font-medium text-forest uppercase tracking-wider text-[11px]">
                   Included Privileges:
                 </p>
-                <p>• Daily farm-to-table organic breakfast on the terrace</p>
-                <p>• Welcome Ayurvedic botanical elixir and cool towel greeting</p>
-                <p>• Guided morning naturalist walk through the shola buffer</p>
+                <p>• Daily farm-to-table estate breakfast on the dining terrace</p>
+                <p>• Welcome Ayurvedic botanical elixir greeting upon arrival</p>
+                <p>• Guided morning shola nature walk with resident naturalist</p>
+                <p>• High-speed property-wide Wi-Fi and direct host coordination</p>
               </div>
             </div>
 
             <div className="p-6 bg-sand/10 border-t border-sand/20 flex flex-wrap items-center justify-between gap-4 text-xs">
               <span className="text-charcoal/60">
-                Questions? Call our concierge team at +91 422 400 1200
+                Concierge assistance: <a href="tel:+914224001200" className="text-forest underline">+91 422 400 1200</a>
               </span>
               <div className="flex items-center gap-3">
                 <button
@@ -285,20 +304,26 @@ export default function BookingFlow() {
                   Choose your retreat dates
                 </h2>
                 <p className="mt-2 text-charcoal/70 text-sm font-light">
-                  Select your arrival and departure dates to verify residence availability.
+                  Select your arrival and departure dates to verify residence availability in the foothills.
                 </p>
 
                 <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="flex flex-col gap-1.5">
                     <label htmlFor="checkIn" className="text-xs tracking-wider uppercase text-sand-dark font-medium">
-                      Check-In Date
+                      Arrival Date
                     </label>
                     <input
                       id="checkIn"
                       type="date"
+                      min={todayStr}
                       value={checkIn}
-                      onChange={(e) => setCheckIn(e.target.value)}
-                      className="border border-sand/30 bg-cream/70 px-4 py-3.5 text-sm text-charcoal focus:border-forest outline-none transition-colors"
+                      onChange={(e) => {
+                        setCheckIn(e.target.value);
+                        if (checkOut && e.target.value >= checkOut) {
+                          setCheckOut("");
+                        }
+                      }}
+                      className="border border-sand/30 bg-cream/70 px-4 py-3.5 text-sm text-charcoal focus:border-forest outline-none transition-colors cursor-pointer"
                     />
                     {errors.checkIn && (
                       <p className="text-xs text-red-600 mt-1">{errors.checkIn}</p>
@@ -307,14 +332,15 @@ export default function BookingFlow() {
 
                   <div className="flex flex-col gap-1.5">
                     <label htmlFor="checkOut" className="text-xs tracking-wider uppercase text-sand-dark font-medium">
-                      Check-Out Date
+                      Departure Date
                     </label>
                     <input
                       id="checkOut"
                       type="date"
+                      min={checkIn || todayStr}
                       value={checkOut}
                       onChange={(e) => setCheckOut(e.target.value)}
-                      className="border border-sand/30 bg-cream/70 px-4 py-3.5 text-sm text-charcoal focus:border-forest outline-none transition-colors"
+                      className="border border-sand/30 bg-cream/70 px-4 py-3.5 text-sm text-charcoal focus:border-forest outline-none transition-colors cursor-pointer"
                     />
                     {errors.checkOut && (
                       <p className="text-xs text-red-600 mt-1">{errors.checkOut}</p>
@@ -330,7 +356,7 @@ export default function BookingFlow() {
                     id="guests"
                     value={guestsCount}
                     onChange={(e) => setGuestsCount(e.target.value)}
-                    className="border border-sand/30 bg-cream/70 px-4 py-3.5 text-sm text-charcoal focus:border-forest outline-none transition-colors"
+                    className="border border-sand/30 bg-cream/70 px-4 py-3.5 text-sm text-charcoal focus:border-forest outline-none transition-colors cursor-pointer"
                   >
                     {[1, 2, 3, 4, 5, 6].map((n) => (
                       <option key={n} value={n}>
@@ -338,17 +364,29 @@ export default function BookingFlow() {
                       </option>
                     ))}
                   </select>
+                  {Number(guestsCount) > 4 && (
+                    <p className="text-xs text-sand-dark mt-1 font-light">
+                      * Note: For parties over 4 guests, reserving multiple residences or the Deccan Royal Suite is recommended.
+                    </p>
+                  )}
                 </div>
 
                 <div className="mt-10 pt-6 border-t border-sand/20 flex justify-end">
                   <button
-                    onClick={() => validateDates() && goTo("room")}
-                    className="inline-flex items-center gap-3 px-9 py-4 bg-forest text-cream text-xs tracking-luxury uppercase font-medium hover:bg-forest-dark transition-all shadow-md hover:shadow-xl"
+                    disabled={isVerifying}
+                    onClick={handleCheckDatesAndProceed}
+                    className="inline-flex items-center gap-3 px-9 py-4 bg-forest text-cream text-xs tracking-luxury uppercase font-medium hover:bg-forest-dark transition-all shadow-md hover:shadow-xl disabled:opacity-70"
                   >
-                    <span>View Available Residences</span>
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
+                    {isVerifying ? (
+                      <span>Verifying Availability...</span>
+                    ) : (
+                      <>
+                        <span>View Available Residences</span>
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                      </>
+                    )}
                   </button>
                 </div>
               </div>
@@ -365,7 +403,7 @@ export default function BookingFlow() {
                     Select your residence
                   </h2>
                   <p className="mt-2 text-charcoal/70 text-sm font-light">
-                    Choose the residence best suited for your party and degree of solitude.
+                    Choose the residence best suited for your party and desired degree of seclusion.
                   </p>
                 </div>
 
@@ -458,9 +496,9 @@ export default function BookingFlow() {
                   </button>
                   <button
                     onClick={() => goTo("details")}
-                    className="inline-flex items-center gap-2 px-8 py-3.5 bg-forest text-cream text-xs tracking-luxury uppercase font-medium hover:bg-forest-dark transition-all"
+                    className="inline-flex items-center gap-2 px-8 py-3.5 bg-forest text-cream text-xs tracking-luxury uppercase font-medium hover:bg-forest-dark transition-all shadow-md"
                   >
-                    <span>Proceed to Details</span>
+                    <span>Proceed to Guest Details</span>
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
@@ -479,7 +517,7 @@ export default function BookingFlow() {
                   Guest Information
                 </h2>
                 <p className="mt-2 text-charcoal/70 text-sm font-light">
-                  Please provide the primary contact details for this reservation.
+                  Please provide primary contact details for this reservation.
                 </p>
 
                 <div className="mt-8 space-y-6">
@@ -560,7 +598,7 @@ export default function BookingFlow() {
                   </button>
                   <button
                     onClick={() => validateDetails() && goTo("review")}
-                    className="inline-flex items-center gap-2 px-8 py-3.5 bg-forest text-cream text-xs tracking-luxury uppercase font-medium hover:bg-forest-dark transition-all"
+                    className="inline-flex items-center gap-2 px-8 py-3.5 bg-forest text-cream text-xs tracking-luxury uppercase font-medium hover:bg-forest-dark transition-all shadow-md"
                   >
                     <span>Review Reservation</span>
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -596,7 +634,7 @@ export default function BookingFlow() {
                     </span>
                   </div>
                   <div className="p-5 flex justify-between items-center">
-                    <span className="text-charcoal/60">Guests</span>
+                    <span className="text-charcoal/60">Party Size</span>
                     <span className="text-charcoal font-medium">{guestsCount} Guests</span>
                   </div>
                   <div className="p-5 flex justify-between items-center">
@@ -628,7 +666,7 @@ export default function BookingFlow() {
                   </button>
                   <button
                     onClick={() => goTo("payment")}
-                    className="inline-flex items-center gap-2 px-8 py-3.5 bg-forest text-cream text-xs tracking-luxury uppercase font-medium hover:bg-forest-dark transition-all"
+                    className="inline-flex items-center gap-2 px-8 py-3.5 bg-forest text-cream text-xs tracking-luxury uppercase font-medium hover:bg-forest-dark transition-all shadow-md"
                   >
                     <span>Proceed to Guarantee</span>
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -649,7 +687,7 @@ export default function BookingFlow() {
                   Reservation Guarantee
                 </h2>
                 <p className="mt-2 text-charcoal/70 text-sm font-light">
-                  A valid card is required to secure your room. No charges will be processed today.
+                  A valid credit or debit card is required to secure your residence. No charges will be processed today.
                 </p>
 
                 <div className="mt-8 space-y-6">
@@ -738,13 +776,20 @@ export default function BookingFlow() {
                     ← Back to Review
                   </button>
                   <button
+                    disabled={isVerifying}
                     onClick={handleConfirmPayment}
-                    className="inline-flex items-center gap-2 px-9 py-4 bg-forest text-cream text-xs tracking-luxury uppercase font-medium hover:bg-forest-dark transition-all shadow-md hover:shadow-xl"
+                    className="inline-flex items-center gap-2 px-9 py-4 bg-forest text-cream text-xs tracking-luxury uppercase font-medium hover:bg-forest-dark transition-all shadow-md hover:shadow-xl disabled:opacity-70"
                   >
-                    <span>Confirm &amp; Secure Reservation</span>
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
+                    {isVerifying ? (
+                      <span>Securing Reservation Folio...</span>
+                    ) : (
+                      <>
+                        <span>Confirm &amp; Secure Reservation</span>
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </>
+                    )}
                   </button>
                 </div>
               </div>
@@ -792,7 +837,7 @@ export default function BookingFlow() {
                   <span className="font-medium text-forest">{effectiveNights} {effectiveNights === 1 ? "Night" : "Nights"}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-charcoal/55">Guests:</span>
+                  <span className="text-charcoal/55">Party Size:</span>
                   <span className="font-medium text-forest">{guestsCount} Guests</span>
                 </div>
               </div>
@@ -817,7 +862,7 @@ export default function BookingFlow() {
               <div className="pt-4 space-y-2 text-[11px] text-charcoal/65">
                 <div className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-sand-dark" />
-                  <span>Complimentary farm-to-table breakfast</span>
+                  <span>Complimentary estate breakfast</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-sand-dark" />

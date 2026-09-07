@@ -8,49 +8,52 @@ import { rooms } from "@/data/rooms";
 
 const experiences = [
   {
-    title: "Guided Forest Trails",
-    subtitle: "Shola Canopy Exploration",
+    title: "Guided Shola Forest Trails",
+    subtitle: "Canopy & Birdlife Exploration",
     description:
-      "Early-morning walks through ancient shola forest with our resident naturalist, timed to the region's rare birdlife and morning mist.",
+      "Quiet walks through the ancient shola buffer bordering the property, timed to catch early mountain mist and resident hornbill and thrush calls.",
     duration: "2–3 Hours",
+    timing: "Early Morning & Late Afternoon",
     image: images.experiences.forestTrail,
   },
   {
     title: "Tea Estate Mornings",
-    subtitle: "Private Plantation Walk",
+    subtitle: "Plantation Heritage",
     description:
-      "A scenic drive into the historic tea estates along the foothills, followed by a private tea tasting back on the resort terrace.",
+      "A scenic drive into historic tea estates along the foothills, followed by a single-origin tea tasting served back on the resort terrace.",
     duration: "Half Day",
+    timing: "Morning Sessions",
     image: images.experiences.teaEstate,
   },
   {
-    title: "Wellness Rituals",
-    subtitle: "Ayurvedic Restorative Sessions",
+    title: "Ayurvedic Restorations",
+    subtitle: "Holistic Herbal Therapies",
     description:
-      "Therapies drawn from regional herbal traditions, held in an open-air teak pavilion overlooking the valley canopy.",
+      "Therapies drawn from regional herbal traditions, held in an open-air teak pavilion overlooking the valley canopy with personalized botanical oils.",
     duration: "90 Minutes",
+    timing: "Daily by Reservation",
     image: images.experiences.wellnessRitual,
   },
 ];
 
-const testimonials = [
+const sanctuaryRhythms = [
   {
-    quote:
-      "The stillness of the property is what stayed with us longest — mornings on the private balcony, mist settling over the valley, nowhere else to be.",
-    name: "Guest, Estate Room",
-    location: "Bengaluru",
+    period: "01 • Morning",
+    title: "Mist & Valley Birdsong",
+    description:
+      "Dawn arrives with drifting shola mist through the canopy. Enjoy freshly brewed estate tea on your private veranda as the valley awakens with the calls of native whistling thrushes and hornbills.",
   },
   {
-    quote:
-      "Every detail, from the shola naturalist walks to the garden-to-table dining, felt considered rather than performed for guests.",
-    name: "Guest, Premium Wellness Villa",
-    location: "Mumbai",
+    period: "02 • Afternoon",
+    title: "Canopy Stillness & Rest",
+    description:
+      "Midday invites quiet restoration. Retreat to shaded teak daybeds by the infinity pool, take a slow botanical walk through the herb gardens, or surrender to customized Ayurvedic therapies.",
   },
   {
-    quote:
-      "The Royal Suite's pool looks straight down the valley ridgeline. We barely left the terrace for three days. Pure restoration.",
-    name: "Guest, Deccan Royal Suite",
-    location: "Chennai",
+    period: "03 • Evening",
+    title: "Fireside & Mountain Stars",
+    description:
+      "As dusk cools the mountain air, gather around the circular stone firepit. Enjoy locally inspired dining on the terrace edge under a brilliant canopy of undisturbed night stars.",
   },
 ];
 
@@ -58,34 +61,33 @@ export default function HomePage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative min-h-[720px] h-screen w-full overflow-hidden flex flex-col justify-between">
+      <section className="relative min-h-[740px] h-screen w-full overflow-hidden flex flex-col justify-between">
         {/* Background Resort Photograph */}
         <Image
           src={images.hero.main}
-          alt="Deccan Resort property and pool in the Western Ghats"
+          alt="Deccan Resort secluded stone villas and infinity pool in the Western Ghats"
           fill
           priority
           sizes="100vw"
-          className="object-cover scale-100 transition-transform duration-[12000ms] ease-out hover:scale-105"
+          className="object-cover scale-100 transition-transform duration-[14000ms] ease-out hover:scale-105"
         />
 
-        {/* Multi-layered cinematic gradient scrim */}
-        <div className="absolute inset-0 bg-gradient-to-t from-forest-deep via-forest-deep/45 to-forest-deep/30" />
+        {/* Cinematic Multi-layered Scrim */}
+        <div className="absolute inset-0 bg-gradient-to-t from-forest-deep via-forest-deep/50 to-forest-deep/30" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-forest-deep/20 to-forest-deep/60 pointer-events-none" />
 
         {/* Hero Content */}
         <div className="relative flex-1 container-content flex flex-col justify-center pt-24 pb-20 z-10">
           <div className="max-w-4xl">
-            
-            {/* Editorial Eyebrow */}
-            <div className="inline-flex items-center gap-3 mb-6 bg-forest-deep/60 backdrop-blur-md px-4 py-1.5 border border-sand/30">
+            {/* Editorial Eyebrow Badge */}
+            <div className="inline-flex items-center gap-3 mb-6 bg-forest-deep/70 backdrop-blur-md px-4 py-2 border border-sand/35 shadow-sm">
               <span className="w-2 h-2 rounded-full bg-sand animate-pulse" />
               <p className="text-[11px] tracking-ultra uppercase text-sand-light font-medium">
-                Coimbatore, Tamil Nadu • Western Ghats Foothills
+                Western Ghats Foothills • Coimbatore, Tamil Nadu
               </p>
             </div>
 
-            {/* Headline with High-End Serif Styling */}
+            {/* Headline */}
             <h1 className="font-display text-cream text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[1.04] tracking-tight text-balance">
               Escape to the Foothills of{" "}
               <span className="italic font-normal text-sand-light">Western Ghats</span>
@@ -99,7 +101,7 @@ export default function HomePage() {
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <Link
                 href="/book"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-sand text-forest-deep text-xs tracking-luxury uppercase font-medium hover:bg-sand-light transition-all duration-300 shadow-luxury hover:shadow-xl group"
+                className="group inline-flex items-center gap-3 px-8 py-4 bg-sand text-forest-deep text-xs tracking-luxury uppercase font-medium hover:bg-sand-light transition-all duration-300 shadow-luxury hover:shadow-xl"
               >
                 <span>Check Availability</span>
                 <svg
@@ -118,7 +120,6 @@ export default function HomePage() {
                 <span>Explore Residences</span>
               </Link>
             </div>
-
           </div>
         </div>
 
@@ -136,27 +137,28 @@ export default function HomePage() {
       {/* Sanctuary Overview Section */}
       <section className="container-content pt-28 md:pt-36 pb-24 border-b border-sand/20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          
           {/* Visual Image Showcase with Gold Framing */}
           <div className="lg:col-span-6 relative order-2 lg:order-1">
-            <div className="relative aspect-[4/5] overflow-hidden shadow-luxury-lg border border-sand/25">
+            <div className="relative aspect-[4/5] overflow-hidden shadow-luxury-lg border border-sand/30">
               <Image
                 src={images.intro.mistMountains}
-                alt="Misty mountains of the Western Ghats near Deccan Resort"
+                alt="Misty forested ridgelines of the Western Ghats near Deccan Resort"
                 fill
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 className="object-cover transition-transform duration-700 hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/40 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/50 via-transparent to-transparent" />
             </div>
 
             {/* Floating Editorial Badge */}
-            <div className="absolute -bottom-6 -right-6 sm:bottom-6 sm:-right-8 bg-forest text-cream p-5 sm:p-6 shadow-luxury-float max-w-[220px] border border-sand/30 hidden sm:block">
+            <div className="absolute -bottom-6 -right-6 sm:bottom-6 sm:-right-8 bg-forest text-cream p-5 sm:p-6 shadow-luxury-float max-w-[240px] border border-sand/30 hidden sm:block">
               <span className="text-[10px] tracking-ultra uppercase text-sand-light font-medium block">
-                Sanctuary Height
+                Sanctuary Setting
               </span>
-              <p className="font-display text-2xl text-cream mt-1">1,200 Meters</p>
-              <p className="text-xs text-cream/70 mt-1 font-light">Elevated Western Ghats subtropical microclimate</p>
+              <p className="font-display text-xl text-cream mt-1">Forested Foothills</p>
+              <p className="text-xs text-cream/70 mt-1 font-light">
+                Sheltered within the lush Western Ghats mountain buffer
+              </p>
             </div>
           </div>
 
@@ -165,26 +167,26 @@ export default function HomePage() {
             <SectionHeading
               eyebrow="The Sanctuary"
               title="A tranquil property set into the hills above Coimbatore"
-              description="Deccan Resort sits within the forested foothills of the Western Ghats, a short drive from Coimbatore. The property was designed around the landscape rather than over it — low structures, native granite, reclaimed timber, and wide verandas that keep the surrounding valley in constant view."
+              description="Deccan Resort sits within the forested foothills of the Western Ghats, a scenic drive from Coimbatore. The property was designed around the landscape rather than over it — low structures, native granite, reclaimed timber, and wide verandas that keep the surrounding valley in constant view."
             />
 
-            <p className="mt-5 text-charcoal/70 leading-relaxed font-light">
-              Every stay is built around three pillars: privacy, restorative wellness, and intimate proximity to the shola forest itself. There is no rigid itinerary here — only an environment tailored to slow down and reconnect.
+            <p className="mt-5 text-charcoal/75 leading-relaxed font-light">
+              Every stay is built around three pillars: seclusion, restorative wellness, and intimate proximity to the shola forest itself. There is no rigid itinerary here — only an environment tailored to slow down and reconnect.
             </p>
 
-            {/* Quick Metrics Bar */}
+            {/* Qualitative Pillars Bar */}
             <div className="mt-10 grid grid-cols-3 gap-6 py-6 border-y border-sand/20">
               <div>
-                <span className="font-display text-3xl sm:text-4xl text-forest">3</span>
-                <p className="text-xs text-charcoal/60 mt-1 tracking-wide">Villa Categories</p>
+                <span className="font-display text-2xl sm:text-3xl text-forest block">3</span>
+                <p className="text-xs text-charcoal/65 mt-1 tracking-wide">Private Residences</p>
               </div>
               <div>
-                <span className="font-display text-3xl sm:text-4xl text-forest">100%</span>
-                <p className="text-xs text-charcoal/60 mt-1 tracking-wide">Organic Dining</p>
+                <span className="font-display text-2xl sm:text-3xl text-forest block">Shola</span>
+                <p className="text-xs text-charcoal/65 mt-1 tracking-wide">Foothills Buffer</p>
               </div>
               <div>
-                <span className="font-display text-3xl sm:text-4xl text-forest">18°C</span>
-                <p className="text-xs text-charcoal/60 mt-1 tracking-wide">Average Temp</p>
+                <span className="font-display text-2xl sm:text-3xl text-forest block">Ayurvedic</span>
+                <p className="text-xs text-charcoal/65 mt-1 tracking-wide">Restorative Living</p>
               </div>
             </div>
 
@@ -194,13 +196,17 @@ export default function HomePage() {
                 className="inline-flex items-center gap-2 text-xs tracking-luxury uppercase text-forest font-semibold hover:text-sand-dark transition-colors group"
               >
                 <span>Read Our Sanctuary Story</span>
-                <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg
+                  className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
               </Link>
             </div>
           </div>
-
         </div>
       </section>
 
@@ -218,7 +224,12 @@ export default function HomePage() {
               className="inline-flex items-center gap-2 text-xs tracking-luxury uppercase text-forest font-semibold hover:text-sand-dark transition-colors shrink-0 group"
             >
               <span>View All 3 Residences</span>
-              <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg
+                className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
             </Link>
@@ -232,38 +243,38 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Western Ghats Biodiversity Banner */}
+      {/* Western Ghats Biodiversity Atmospheric Banner */}
       <section className="relative py-36 md:py-44 overflow-hidden">
         <Image
           src={images.hero.poolValley}
-          alt="Infinity pool overlooking the Western Ghats valley"
+          alt="Infinity pool overlooking the forested valley ridgeline"
           fill
           sizes="100vw"
           className="object-cover scale-100 transition-transform duration-1000 hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-forest-deep via-forest-deep/75 to-forest-deep/60" />
-        
+
         <div className="relative container-content text-center max-w-4xl mx-auto z-10">
           <SectionHeading
             light
             align="center"
             eyebrow="The Western Ghats"
-            title="Set within one of the world's eight biodiversity hotspots"
-            description="The resort directly borders a protected forest belt in the Western Ghats — an ancient UNESCO World Heritage landscape known for its density of endemic orchids, misty ridgelines, and cool elevated climate year-round."
+            title="Bordering an ancient mountain forest belt"
+            description="The resort borders an undisturbed forest belt in the Western Ghats — an ancient landscape characterized by rolling morning mist, endemic flora, and gentle valley breezes that sweep through the canopy at dawn."
           />
 
-          <div className="mt-12 flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs tracking-luxury uppercase text-sand-light font-medium">
+          <div className="mt-12 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs tracking-luxury uppercase text-sand-light font-medium">
             <span className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-sand" />
-              Pure Mountain Solitude
+              Mountain Solitude
             </span>
             <span className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-sand" />
-              Pure Mountain Flora
+              Native Canopy Flora
             </span>
             <span className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-sand" />
-              Year-Round Valley Breeze
+              Valley Light &amp; Mist
             </span>
           </div>
         </div>
@@ -282,7 +293,12 @@ export default function HomePage() {
             className="inline-flex items-center gap-2 text-xs tracking-luxury uppercase text-forest font-semibold hover:text-sand-dark transition-colors shrink-0 group"
           >
             <span>See All Experiences</span>
-            <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg
+              className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
           </Link>
@@ -292,7 +308,7 @@ export default function HomePage() {
           {experiences.map((exp) => (
             <div
               key={exp.title}
-              className="group bg-cream border border-sand/20 hover:border-sand/50 transition-all duration-500 hover:shadow-luxury-lg overflow-hidden flex flex-col"
+              className="group bg-cream border border-sand/25 hover:border-sand/60 transition-all duration-500 hover:shadow-luxury-lg overflow-hidden flex flex-col"
             >
               <div className="relative aspect-[4/3] overflow-hidden bg-forest-dark">
                 <Image
@@ -303,8 +319,8 @@ export default function HomePage() {
                   className="object-cover transition-transform duration-700 ease-elegant group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/60 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity" />
-                
-                <span className="absolute top-4 right-4 bg-forest-deep/80 backdrop-blur-md text-sand-light text-[11px] font-medium px-3 py-1 border border-sand/30 tracking-wider">
+
+                <span className="absolute top-4 right-4 bg-forest-deep/85 backdrop-blur-md text-sand-light text-[11px] font-medium px-3 py-1 border border-sand/30 tracking-wider">
                   {exp.duration}
                 </span>
               </div>
@@ -328,7 +344,12 @@ export default function HomePage() {
                     className="inline-flex items-center gap-2 text-xs tracking-luxury uppercase text-forest font-medium group-hover:text-sand-dark transition-colors"
                   >
                     <span>Reserve Activity</span>
-                    <svg className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg
+                      className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
                   </Link>
@@ -339,20 +360,63 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Editorial Gallery Preview */}
+      {/* Editorial Chapter: The Rhythm of Sanctuary (Replacing Fake Testimonials) */}
+      <section className="bg-forest-deep py-28 md:py-36 text-cream border-b border-sand/20">
+        <div className="container-content">
+          <SectionHeading
+            light
+            align="center"
+            eyebrow="Sanctuary Living"
+            title="The rhythm of a mountain day"
+            description="Days at Deccan Resort move to the natural cadence of the forest, shifting mist, and tranquil mountain light."
+          />
+
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
+            {sanctuaryRhythms.map((r) => (
+              <div
+                key={r.period}
+                className="glass-forest p-8 sm:p-10 border border-sand/25 flex flex-col justify-between"
+              >
+                <div>
+                  <span className="text-xs tracking-ultra uppercase text-sand-light font-medium block mb-3">
+                    {r.period}
+                  </span>
+                  <h3 className="font-display text-2xl text-cream mb-4">
+                    {r.title}
+                  </h3>
+                  <p className="text-sm text-cream/80 leading-relaxed font-light">
+                    {r.description}
+                  </p>
+                </div>
+
+                <div className="mt-8 pt-5 border-t border-cream/15 flex items-center gap-2 text-xs text-sand-light font-medium tracking-wider uppercase">
+                  <span>Slow Living Ethos</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Visual Gallery Preview */}
       <section className="container-content py-24 md:py-32 border-b border-sand/20">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
           <SectionHeading
             eyebrow="Visual Portfolio"
             title="A sense of the property"
-            description="Explore the interplay of stone architecture, native forest canopies, and morning valley light."
+            description="Explore the interplay of native stone architecture, forest canopies, and morning valley light."
           />
           <Link
             href="/gallery"
             className="inline-flex items-center gap-2 text-xs tracking-luxury uppercase text-forest font-semibold hover:text-sand-dark transition-colors shrink-0 group"
           >
             <span>View Complete Gallery</span>
-            <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg
+              className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
           </Link>
@@ -380,48 +444,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Guest Testimonials Section */}
-      <section className="bg-forest-deep py-28 md:py-36 text-cream border-b border-sand/20">
-        <div className="container-content">
-          <SectionHeading
-            light
-            align="center"
-            eyebrow="Guest Impressions"
-            title="Reflections from our sanctuary"
-          />
-
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
-            {testimonials.map((t) => (
-              <div
-                key={t.name}
-                className="glass-forest p-8 sm:p-10 border border-sand/25 flex flex-col justify-between"
-              >
-                <div>
-                  <span className="font-display text-4xl text-sand-light block mb-4">“</span>
-                  <p className="font-display text-lg text-cream/90 leading-relaxed italic">
-                    {t.quote}
-                  </p>
-                </div>
-                <div className="mt-8 pt-6 border-t border-cream/15">
-                  <p className="font-display text-base text-sand-light">{t.name}</p>
-                  <p className="text-xs text-cream/50 mt-0.5">{t.location}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Final Editorial Invitation */}
       <section className="container-content py-28 md:py-36 text-center">
-        <div className="max-w-3xl mx-auto bg-mist/50 p-10 sm:p-16 border border-sand/30 shadow-luxury-md">
+        <div className="max-w-3xl mx-auto bg-mist/50 p-10 sm:p-16 border border-sand/35 shadow-luxury-md">
           <span className="text-[10px] tracking-ultra uppercase text-sand-dark font-medium block mb-3">
             Reservations
           </span>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-forest tracking-tight">
             Reserve your retreat above the valley
           </h2>
-          <p className="mt-5 text-charcoal/70 max-w-xl mx-auto text-base sm:text-lg font-light leading-relaxed">
+          <p className="mt-5 text-charcoal/75 max-w-xl mx-auto text-base sm:text-lg font-light leading-relaxed">
             Experience complete seclusion, bespoke dining, and uninterrupted views across the Western Ghats.
           </p>
           <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
@@ -436,7 +468,7 @@ export default function HomePage() {
             </Link>
             <Link
               href="/stay"
-              className="inline-flex items-center gap-2 px-9 py-4 border border-sand text-forest text-xs tracking-luxury uppercase font-medium hover:bg-sand/10 transition-colors"
+              className="inline-flex items-center gap-2 px-9 py-4 border border-sand/60 text-forest text-xs tracking-luxury uppercase font-medium hover:bg-sand/15 transition-colors"
             >
               <span>Compare Suites</span>
             </Link>

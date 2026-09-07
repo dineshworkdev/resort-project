@@ -87,7 +87,7 @@ body {
   background: rgba(253, 251, 247, 0.94);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(200, 162, 123, 0.28);
+  border: 1px solid rgba(200, 162, 123, 0.32);
 }
 
 .border-gold-subtle {
@@ -114,4 +114,19 @@ body {
   background: linear-gradient(135deg, #e2cbae 0%, #c8a27b 50%, #ad8560 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* Print styling for reservation folio */
+@media print {
+  header, footer, nav, button {
+    display: none !important;
+  }
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  .glass-card, .border {
+    border: 1px solid #cccccc !important;
+    box-shadow: none !important;
+  }
 }

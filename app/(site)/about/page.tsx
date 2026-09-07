@@ -15,19 +15,19 @@ const pillars = [
     number: "01",
     title: "Sanctuary & Uncompromised Privacy",
     description:
-      "Villas and residences are widely spaced across thirty forested acres, buffered by mature trees and natural topography so guests remain sheltered from the view and sound of one another.",
+      "Villas and residences are widely spaced across forested grounds, buffered by mature trees and natural topography so guests remain sheltered from the view and sound of one another.",
   },
   {
     number: "02",
     title: "Rooted Ayurvedic Restoration",
     description:
-      "Our wellness program, seasonal dining, and spa therapies reject superficial wellness trends in favour of authentic Ayurvedic diagnosis, regional botanicals, and quiet time in nature.",
+      "Our wellness program, seasonal dining, and spa therapies reject superficial wellness trends in favour of authentic Ayurvedic consultation, regional botanicals, and restorative time in nature.",
   },
   {
     number: "03",
     title: "Ecological Stewardship of the Shola",
     description:
-      "The resort operates strictly within the UNESCO buffer zone: 100% rainwater retention, zero single-use plastics, preservation of wildlife corridors, and organic waste returned to our kitchen gardens.",
+      "The resort embraces low-impact ecological stewardship: natural rainwater harvesting, plastic-free hospitality, preservation of wildlife corridors, and organic composting returned to our kitchen herb gardens.",
   },
 ];
 
@@ -40,13 +40,14 @@ export default function AboutPage() {
           src={images.about.architecture}
           alt="Deccan Resort stone architecture nestled in the Western Ghats canopy"
           fill
+          priority
           sizes="100vw"
           className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-forest-deep via-forest-deep/60 to-forest-deep/30" />
-        
+
         <div className="relative container-content pb-16 z-10 max-w-4xl">
-          <div className="inline-flex items-center gap-2.5 mb-4 bg-forest-deep/60 backdrop-blur-md px-3.5 py-1 border border-sand/30">
+          <div className="inline-flex items-center gap-2.5 mb-4 bg-forest-deep/70 backdrop-blur-md px-3.5 py-1.5 border border-sand/30">
             <span className="w-1.5 h-1.5 rounded-full bg-sand" />
             <p className="text-[10px] tracking-ultra uppercase text-sand-light font-medium">
               Philosophy &amp; Setting
@@ -75,7 +76,7 @@ export default function AboutPage() {
             </h2>
             
             <p className="mt-6 text-charcoal/80 text-lg font-light leading-relaxed">
-              Deccan Resort was founded on a single undisturbed parcel in the forested foothills of the Western Ghats, specifically chosen for its natural elevation, clear mountain air, and complete isolation from highway noise.
+              Deccan Resort was founded on an undisturbed parcel in the forested foothills of the Western Ghats, specifically chosen for its natural elevation, clear mountain air, and seclusion from highway noise.
             </p>
 
             <p className="mt-4 text-charcoal/70 leading-relaxed font-light">
@@ -119,7 +120,7 @@ export default function AboutPage() {
           <SectionHeading
             eyebrow="Our Principles"
             title="The three foundations of Deccan Resort"
-            description="Our decisions — from architectural scale to our farm-to-table menu — are guided by three uncompromising standards."
+            description="Our decisions — from architectural scale to our estate-to-table culinary philosophy — are guided by three uncompromising standards."
           />
 
           <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
@@ -152,25 +153,25 @@ export default function AboutPage() {
           <div className="lg:col-span-7">
             <SectionHeading
               eyebrow="Geographic Setting"
-              title="Within the Western Ghats buffer zone"
-              description="The Western Ghats is older than the Himalayas and recognized as one of the world's eight hottest biodiversity hotspots. Deccan Resort rests at 1,200 meters elevation, experiencing pleasant sub-tropical weather year-round."
+              title="Within the Western Ghats foothills"
+              description="The Western Ghats is older than the Himalayas and recognized for its extraordinary botanical and birdlife diversity. Deccan Resort rests in an elevated foothill setting, experiencing pleasant, temperate mountain weather throughout the year."
             />
 
             <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 gap-6 pt-6 border-t border-sand/20">
               <div>
-                <span className="text-[10px] tracking-ultra uppercase text-sand-dark font-medium block">Elevation</span>
-                <p className="font-display text-2xl text-forest mt-1">1,200 M</p>
-                <p className="text-xs text-charcoal/55 mt-0.5">Above sea level</p>
+                <span className="text-[10px] tracking-ultra uppercase text-sand-dark font-medium block">Setting</span>
+                <p className="font-display text-2xl text-forest mt-1">Elevated</p>
+                <p className="text-xs text-charcoal/55 mt-0.5">Foothill slopes</p>
               </div>
               <div>
-                <span className="text-[10px] tracking-ultra uppercase text-sand-dark font-medium block">Airport</span>
-                <p className="font-display text-2xl text-forest mt-1">60 Mins</p>
-                <p className="text-xs text-charcoal/55 mt-0.5">Coimbatore (CJB)</p>
+                <span className="text-[10px] tracking-ultra uppercase text-sand-dark font-medium block">Transit</span>
+                <p className="font-display text-2xl text-forest mt-1">Scenic</p>
+                <p className="text-xs text-charcoal/55 mt-0.5">Near Coimbatore (CJB)</p>
               </div>
               <div>
                 <span className="text-[10px] tracking-ultra uppercase text-sand-dark font-medium block">Climate</span>
-                <p className="font-display text-2xl text-forest mt-1">17° – 26°C</p>
-                <p className="text-xs text-charcoal/55 mt-0.5">Temperate year-round</p>
+                <p className="font-display text-2xl text-forest mt-1">Temperate</p>
+                <p className="text-xs text-charcoal/55 mt-0.5">Year-round breeze</p>
               </div>
             </div>
 
@@ -186,7 +187,7 @@ export default function AboutPage() {
               </Link>
               <Link
                 href="/experiences"
-                className="inline-flex items-center gap-2 px-8 py-4 border border-sand text-forest text-xs tracking-luxury uppercase font-medium hover:bg-sand/10 transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-4 border border-sand/50 text-forest text-xs tracking-luxury uppercase font-medium hover:bg-sand/10 transition-colors"
               >
                 <span>Explore Activities</span>
               </Link>
@@ -195,13 +196,13 @@ export default function AboutPage() {
 
           <div className="lg:col-span-5 bg-forest-deep text-cream p-8 sm:p-10 border border-sand/30">
             <span className="text-[10px] tracking-ultra uppercase text-sand-light font-medium block mb-2">
-              Arrival &amp; Chauffeur
+              Arrival &amp; Coordination
             </span>
             <h3 className="font-display text-2xl text-cream">
               Private Transfers
             </h3>
             <p className="mt-4 text-xs sm:text-sm text-cream/75 leading-relaxed font-light">
-              Our concierge coordinates seamless private 4x4 and executive luxury transfers directly from Coimbatore International Airport (CJB) or Coimbatore Junction railway station.
+              Our concierge coordinates seamless private chauffeured transfers directly from Coimbatore International Airport (CJB) or Coimbatore Junction railway station.
             </p>
             <div className="mt-6 pt-5 border-t border-cream/15 text-xs text-sand-light space-y-1.5">
               <p>• Flight tracking and curbside greeting</p>

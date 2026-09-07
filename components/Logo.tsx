@@ -1,57 +1,145 @@
+import Image from "next/image";
 import Link from "next/link";
 
 interface LogoProps {
-  variant?: "dark" | "light";
+  /**
+   * - "full": Full DECCAN RESORT logo asset (logo.png)
+   * - "icon": DR crest mark icon asset (logo-icon.png)
+   * - "mark-text": DR crest icon followed by styled editorial resort name text
+   * - "responsive": Full logo on desktop (lg+), icon + editorial text on compact/mobile screens
+   */
+  variant?: "full" | "icon" | "mark-text" | "responsive";
+  /**
+   * "light": Over dark backgrounds (e.g. hero overlay, footer)
+   * "dark": Over light/cream backgrounds (e.g. solid scrolled navbar)
+   * "auto": Inherits context or adapts naturally
+   */
+  theme?: "light" | "dark" | "auto";
   className?: string;
+  priority?: boolean;
 }
 
-export default function Logo({ variant = "dark", className = "" }: LogoProps) {
-  const mark = variant === "dark" ? "#1B3B2B" : "#FDFBF7";
-  const word = variant === "dark" ? "#1B3B2B" : "#FDFBF7";
-  const sub = variant === "dark" ? "#222222" : "#EFEAE0";
+export default function Logo({
+  variant = "responsive",
+  theme = "dark",
+  className = "",
+  priority = false,
+}: LogoProps) {
+  const isLight = theme === "light";
+
+  // Filter adjustment for dark backgrounds so the deep forest green lettering maintains crisp contrast
+  const logoFilter = isLight
+    ? "brightness-[1.25] contrast-[1.05] drop-shadow-[0_2px_8px_rgba(200,162,123,0.25)]"
+    : "";
 
   return (
     <Link
       href="/"
-      aria-label="Deccan Resort, home"
-      className={`inline-flex items-center ${className}`}
+      aria-label="Deccan Resort — Return to Home"
+      className={`inline-flex items-center transition-opacity hover:opacity-95 ${className}`}
     >
-      <svg
-        width="176"
-        height="38"
-        viewBox="0 0 180 40"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M10 5H22C27.5 5 31 8.5 31 13.5C31 18.5 27.5 22 22 22H14V35H10V5ZM14 18H21.5C25 18 27 16 27 13.5C27 11 25 9 21.5 9H14V18Z"
-          fill={mark}
-        />
-        <path
-          d="M36 24.5C36 27.5 38 29.5 41 29.5C44 29.5 45.5 27.5 45.5 25.5H49.5C49.5 29.5 46 33 41 33C35.5 33 32 29.5 32 24.5C32 19.5 35.5 16 41 16C46.5 16 49.5 19.5 49.5 24.5H36ZM45.5 22.5C45.5 20.5 44 19 41 19C38 19 36.5 20.5 36.5 22.5H45.5Z"
-          fill={mark}
-        />
-        <text
-          x="58"
-          y="24"
-          fontFamily="var(--font-fraunces), Georgia, serif"
-          fontSize="14"
-          letterSpacing="4"
-          fill={word}
-        >
-          DECCAN
-        </text>
-        <text
-          x="58"
-          y="35"
-          fontFamily="var(--font-inter), sans-serif"
-          fontSize="8"
-          letterSpacing="3"
-          fill={sub}
-        >
-          RESORT
-        </text>
-      </svg>
+      {variant === "full" && (
+        <div className="relative h-14 sm:h-16 w-auto aspect-[3/2] flex items-center">
+          <Image
+            src="/images/logo/logo.png"
+            alt="Deccan Resort"
+            width={1536}
+            height={1024}
+            priority={priority}
+            className={`h-full w-auto object-contain transition-all duration-300 ${logoFilter}`}
+          />
+        </div>
+      )}
+
+      {variant === "icon" && (
+        <div className="relative h-10 w-auto aspect-[1351/1164] flex items-center">
+          <Image
+            src="/images/logo/logo-icon.png"
+            alt="Deccan Resort Crest"
+            width={1351}
+            height={1164}
+            priority={priority}
+            className="h-full w-auto object-contain"
+          />
+        </div>
+      )}
+
+      {variant === "mark-text" && (
+        <div className="flex items-center gap-3">
+          <div className="relative h-10 w-auto aspect-[1351/1164] shrink-0">
+            <Image
+              src="/images/logo/logo-icon.png"
+              alt="Deccan Resort Icon"
+              width={1351}
+              height={1164}
+              priority={priority}
+              className="h-full w-auto object-contain"
+            />
+          </div>
+          <div className="flex flex-col text-left leading-none">
+            <span
+              className={`font-display text-base tracking-[0.22em] font-medium transition-colors ${
+                isLight ? "text-cream" : "text-forest"
+              }`}
+            >
+              DECCAN
+            </span>
+            <span
+              className={`font-body text-[8.5px] tracking-[0.32em] font-normal mt-1 transition-colors ${
+                isLight ? "text-sand-light" : "text-sand-dark"
+              }`}
+            >
+              RESORT
+            </span>
+          </div>
+        </div>
+      )}
+
+      {variant === "responsive" && (
+        <>
+          {/* Desktop view: Full official logo */}
+          <div className="hidden lg:flex items-center h-14 xl:h-16 w-auto aspect-[3/2]">
+            <Image
+              src="/images/logo/logo.png"
+              alt="Deccan Resort"
+              width={1536}
+              height={1024}
+              priority={priority}
+              className={`h-full w-auto object-contain transition-all duration-300 ${logoFilter}`}
+            />
+          </div>
+
+          {/* Compact / Mobile view: Official Logo Icon + DECCAN RESORT editorial text */}
+          <div className="flex lg:hidden items-center gap-2.5">
+            <div className="relative h-9 w-auto aspect-[1351/1164] shrink-0">
+              <Image
+                src="/images/logo/logo-icon.png"
+                alt="Deccan Resort Icon"
+                width={1351}
+                height={1164}
+                priority={priority}
+                className="h-full w-auto object-contain"
+              />
+            </div>
+            <div className="flex flex-col text-left leading-none">
+              <span
+                className={`font-display text-sm tracking-[0.22em] font-medium transition-colors ${
+                  isLight ? "text-cream" : "text-forest"
+                }`}
+              >
+                DECCAN
+              </span>
+              <span
+                className={`font-body text-[8px] tracking-[0.32em] font-normal mt-1 transition-colors ${
+                  isLight ? "text-sand-light" : "text-sand-dark"
+                }`}
+              >
+                RESORT
+              </span>
+            </div>
+          </div>
+        </>
+      )}
     </Link>
   );
 }
