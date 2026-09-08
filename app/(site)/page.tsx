@@ -61,7 +61,7 @@ export default function HomePage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative min-h-[740px] h-screen w-full overflow-hidden flex flex-col justify-between">
+      <section className="relative min-h-[740px] h-screen w-full overflow-hidden flex flex-col justify-between mt-20" style={{ minHeight: "calc(100vh - 80px)", height: "calc(100vh - 80px)" }}>
         {/* Background Resort Photograph */}
         <Image
           src={images.hero.main}
@@ -77,7 +77,7 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-forest-deep/20 to-forest-deep/60 pointer-events-none" />
 
         {/* Hero Content */}
-        <div className="relative flex-1 container-content flex flex-col justify-center pt-24 pb-20 z-10">
+        <div className="relative flex-1 container-content flex flex-col justify-center pt-8 pb-20 z-10">
           <div className="max-w-4xl">
             {/* Editorial Eyebrow Badge with rounded-full */}
             <div className="inline-flex items-center gap-3 mb-6 bg-forest-deep/70 backdrop-blur-md px-4 py-2 border border-sand/35 shadow-sm rounded-full">
