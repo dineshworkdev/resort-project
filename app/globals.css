@@ -116,17 +116,7 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
-/* Print styling for reservation folio */
-@media print {
-  header, footer, nav, button {
-    display: none !important;
-  }
-  body {
-    background: #ffffff !important;
-    color: #000000 !important;
-  }
-  .glass-card, .border {
-    border: 1px solid #cccccc !important;
-    box-shadow: none !important;
-  }
+/* Mobile drawer transition duration utility */
+.duration-400 {
+  transition-duration: 400ms;
 }
